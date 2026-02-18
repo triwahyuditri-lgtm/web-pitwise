@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="PITWISE — Alat lapangan tambang offline untuk pelacakan produktivitas, pengukuran, dan perhitungan lapangan. Dibuat untuk profesional pertambangan.">
+  <title>PITWISE — Alat Lapangan Tambang Offline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-logo"><img src="asset/logo.png" alt="PITWISE"
+          class="navbar-logo-img">PITWISE</a>
+      <div class="navbar-links" id="navLinks">
+        <a href="#features">Fitur</a>
+        <a href="#pricing">Harga</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="#download">Unduh</a>
+      </div>
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1>Pit Anda. Data Anda. <span class="gold-text">Kendali Anda.</span></h1>
+      <p>PITWISE adalah alat lapangan tambang offline profesional yang dirancang untuk supervisor, tim pit control, dan
+        engineer produksi. Ukur jarak pada peta GeoPDF dan DXF, estimasi produktivitas, hitung volume, dan analisis
+        grade jalan — semua tanpa koneksi internet.</p>
+      <div class="hero-buttons">
+        <a href="#download" class="btn btn-primary btn-large">Unduh APK</a>
+        <a href="#pricing" class="btn btn-outline btn-large">Lihat Paket</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Dibuat untuk <span class="gold-text">Lapangan Tambang</span></h2>
+          <p>PITWISE adalah aplikasi Android yang dirancang khusus untuk supervisor tambang, petugas pit control, dan
+            engineer produksi. Aplikasi ini menyediakan alat lapangan praktis — pengukuran jarak dan area pada peta
+            GeoPDF/DXF, perhitungan volume overburden dan batubara, estimasi produktivitas excavator, dan analisis grade
+            jalan — semua dirancang untuk berjalan sepenuhnya secara offline.</p>
+          <p>Di pertambangan terbuka, konektivitas tidak dapat diandalkan. PITWISE menghilangkan ketergantungan itu.
+            Muat
+            peta lokasi Anda, jalan di pit, lakukan pengukuran, dan buat laporan tanpa perlu sinyal seluler. Semua
+            perhitungan berjalan secara lokal di perangkat Anda, memastikan data Anda tetap bersama Anda di lapangan
+            tempat keputusan dibuat.</p>
+        </div>
+        <div class="about-image">
+          <img src="asset/home.png" alt="PITWISE App Screenshot">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">Fitur <span class="gold-text">Utama</span></h2>
+      <p class="section-subtitle">Alat yang dirancang khusus untuk operasi tambang harian — dari pembacaan peta hingga
+        pelaporan produksi.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🗺️</div>
+          <h3>Viewer GeoPDF &amp; DXF</h3>
+          <p>Muat peta tambang georeferensi PDF dan DXF langsung di perangkat Anda. Lihat layer, geser, zoom, dan
+            overlay posisi GPS live pada peta — sepenuhnya offline.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📐</div>
+          <h3>Presisi Snap-to-Vertex</h3>
+          <p>Ketuk vertex peta dengan snapping otomatis untuk pengukuran jarak dan area yang akurat. Koordinat diekstrak
+            langsung dari geometri peta — tanpa input manual.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>Perhitungan Volume (BCM/LCM)</h3>
+          <p>Hitung volume overburden dan batubara menggunakan Bank Cubic Meters dan Loose Cubic Meters dengan swell
+            factor yang dapat dikonfigurasi. Formula standar pertambangan sudah tersedia.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Estimasi Produktivitas</h3>
+          <p>Estimasi produktivitas excavator dan hauler per shift berdasarkan kapasitas bucket, cycle time, fill
+            factor,
+            dan efisiensi kerja. Bandingkan aktual dengan target produksi.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Analisis Grade Jalan</h3>
+          <p>Hitung gradien hauling road antara dua titik elevasi. Tentukan apakah segmen jalan memenuhi persyaratan
+            grade aman untuk perjalanan truk bermuatan dan kosong.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📡</div>
+          <h3>Arsitektur Offline-First</h3>
+          <p>Semua fitur berjalan secara lokal di perangkat Anda tanpa ketergantungan internet. Peta, perhitungan,
+            pengukuran, dan laporan semua berfungsi di area tanpa jangkauan seluler.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE VS PREMIUM -->
+  <section class="section comparison" id="comparison">
+    <div class="container">
+      <h2 class="section-title">Gratis vs <span class="gold-text">Premium</span></h2>
+      <p class="section-subtitle">Mulai tanpa biaya. Upgrade ketika Anda membutuhkan perangkat lengkap.</p>
+      <div class="comparison-grid">
+        <div class="comparison-col">
+          <h3>Gratis</h3>
+          <span class="price-tag">Rp 0 — tanpa batas waktu</span>
+          <ul>
+            <li><span class="check">✓</span> Viewer peta tunggal (GeoPDF atau DXF)</li>
+            <li><span class="check">✓</span> Pengukuran jarak dasar</li>
+            <li><span class="check">✓</span> Kalkulator tambang standar</li>
+            <li><span class="check">✓</span> Input produktivitas shift tunggal</li>
+            <li><span class="cross">✗</span> Mengandung iklan</li>
+            <li><span class="cross">✗</span> Tanpa analitik produktivitas lanjutan</li>
+            <li><span class="cross">✗</span> Tanpa ekspor data (PDF/CSV)</li>
+            <li><span class="cross">✗</span> Tanpa update &amp; dukungan prioritas</li>
+          </ul>
+        </div>
+        <div class="comparison-col premium">
+          <h3>Premium</h3>
+          <span class="price-tag">Mulai dari Rp 49.000 / bulan</span>
+          <ul>
+            <li><span class="check">✓</span> Bebas iklan</li>
+            <li><span class="check">✓</span> Muat peta tanpa batas &amp; multi-map manager</li>
+            <li><span class="check">✓</span> Pengukuran jarak, area &amp; snap-to-vertex</li>
+            <li><span class="check">✓</span> Analitik produktivitas lanjutan &amp; multi-shift</li>
+            <li><span class="check">✓</span> Ekspor data PDF &amp; CSV</li>
+            <li><span class="check">✓</span> Kalkulator tambang lengkap (BCM/LCM, grade)</li>
+            <li><span class="check">✓</span> Update fitur prioritas</li>
+            <li><span class="check">✓</span> Dukungan email prioritas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <h2 class="section-title">Harga <span class="gold-text">Transparan</span></h2>
+      <p class="section-subtitle">Tanpa biaya tersembunyi. Tanpa perpanjangan otomatis. Kode voucher diterima. Batalkan
+        kapan saja.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Bulanan</h3>
+          <div class="price">Rp 49.000</div>
+          <span class="period">per bulan</span>
+          <ul>
+            <li><span class="check">✓</span> Akses Premium penuh</li>
+            <li><span class="check">✓</span> Batalkan kapan saja</li>
+            <li><span class="check">✓</span> Dukungan email standar</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Berlangganan</a>
+        </div>
+        <div class="pricing-card featured">
+          <h3>3 Bulan</h3>
+          <div class="price">Rp 129.000</div>
+          <span class="period">per 3 bulan — hemat 12%</span>
+          <ul>
+            <li><span class="check">✓</span> Akses Premium penuh</li>
+            <li><span class="check">✓</span> Batalkan kapan saja</li>
+            <li><span class="check">✓</span> Dukungan email prioritas</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Berlangganan</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Tahunan</h3>
+          <div class="price">Rp 399.000</div>
+          <span class="period">per tahun — hemat 32%</span>
+          <ul>
+            <li><span class="check">✓</span> Akses Premium penuh</li>
+            <li><span class="check">✓</span> Batalkan kapan saja</li>
+            <li><span class="check">✓</span> Dukungan email prioritas</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Berlangganan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="section download" id="download" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">Unduh <span class="gold-text">PITWISE</span></h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">Dapatkan APK resmi langsung dari halaman
+        ini. Ini adalah satu-satunya saluran distribusi resmi.</p>
+      <a href="https://dqijasvfmgeuddsfvyqk.supabase.co/storage/v1/object/public/pitwise/pitwise.apk"
+        class="btn btn-primary btn-large">Unduh APK Resmi</a>
+      <p class="download-version">Versi terbaru: v1.0.0 &nbsp;·&nbsp; Android 8.0+</p>
+      <ol class="download-steps">
+        <li><strong>1.</strong> Ketuk tombol unduh di atas dan simpan APK ke perangkat Anda.</li>
+        <li><strong>2.</strong> Di perangkat Anda, buka Pengaturan → Keamanan → aktifkan "Instal dari Sumber Tidak
+          Dikenal."</li>
+        <li><strong>3.</strong> Buka file APK yang telah diunduh dan ikuti petunjuk instalasi di layar.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Dukungan <span class="gold-text">Teknis</span></h2>
+          <p>Butuh bantuan dengan instalasi, lisensi, atau masalah teknis? Kirim pesan kepada kami dan tim dukungan kami
+            akan merespons dalam satu hari kerja.</p>
+          <a href="mailto:admin@pitwise.web.id" class="contact-email">admin@pitwise.web.id</a>
+        </div>
+        <form class="contact-form" onsubmit="return false;">
+          <input type="text" placeholder="Nama Anda" required>
+          <input type="email" placeholder="Email Anda" required>
+          <textarea placeholder="Pesan Anda" required></textarea>
+          <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <span class="footer-copy">&copy; 2026 PITWISE. Hak cipta dilindungi.</span>
+      <div class="footer-links">
+        <a href="privacy.html">Kebijakan Privasi</a>
+        <a href="terms.html">Syarat Layanan</a>
+        <a href="tutorial.html">Tutorial</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('active'));
+  </script>
+</body>
+
+</html>
