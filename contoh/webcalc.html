@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining Productivity - PITWISE</title>
+    <style>
+        :root { --gold: #FFD700; --bg: #121212; --card: #1e1e1e; --green: #4CAF50; }
+        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        
+        .back-nav { margin-bottom: 25px; }
+        .back-link { 
+            color: var(--gold); 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px;
+        }
+
+        .nav-tabs { display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 1px solid #333; overflow-x: auto; }
+        .tab-btn { background: none; border: none; color: #888; cursor: pointer; font-weight: bold; padding: 10px; font-size: 0.85rem; white-space: nowrap; }
+        .tab-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        
+        .feature-card { background: var(--card); padding: 25px; border-radius: 12px; border: 1px solid #333; margin-bottom: 20px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-size: 0.8rem; color: #aaa; margin-bottom: 5px; }
+        input { width: 100%; padding: 10px; background: #2a2a2a; border: 1px solid #444; border-radius: 6px; color: white; box-sizing: border-box; }
+        input:focus { border-color: var(--gold); outline: none; }
+        
+        .btn-calc { width: 100%; background: var(--gold); color: black; border: none; padding: 15px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; text-transform: uppercase; }
+        
+        .result-container { display: none; margin-top: 25px; background: #1a1a1a; padding: 20px; border-radius: 8px; border-left: 5px solid var(--gold); }
+        .result-item { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .result-label { font-size: 0.85rem; color: #888; }
+        .result-val { color: var(--gold); font-weight: bold; }
+        .result-main { color: var(--green); font-size: 1.8rem; font-weight: 800; display: block; text-align: center; margin: 10px 0; }
+        
+        .calc-section { display: none; }
+        .calc-section.active { display: block; }
+        small { color: #666; font-size: 0.7rem; display: block; margin-top: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="back-nav">
+        <a href="index.html" class="back-link"><span>&#8592;</span> Kembali ke Beranda</a>
+    </div>
+    
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="showTab('exca')">EXCAVATOR</button>
+        <button class="tab-btn" onclick="showTab('haul')">HAULER</button>
+        <button class="tab-btn" onclick="showTab('cycle')">HAULING CYCLE</button>
+    </div>
+
+    <div id="exca-section" class="calc-section active">
+        <div class="feature-card">
+            <div class="input-group"><label>Unit Model</label><input type="text" id="exca_unit_name" placeholder="PC-1250"></div>
+            <div class="input-group"><label>Bucket Capacity (m³)</label><input type="number" id="bucket" value="3.6"></div>
+            <div class="input-group"><label>Fill Factor</label><input type="number" id="exca_ff" value="0.85"></div>
+            <div class="input-group"><label>Cycle Time (sec)</label><input type="number" id="exca_ct" value="24.0"></div>
+            <div class="input-group"><label>Swell Factor</label><input type="number" id="sf" value="1.35"></div>
+            <div class="input-group"><label>Job Efficiency</label><input type="number" id="exca_eff" value="0.75"></div>
+            <div class="input-group"><label>EWH (Jam)</label><input type="number" id="exca_ewh" value="14"></div>
+            <button class="btn-calc" onclick="calcExca()">Calculate Excavator</button>
+            <div id="exca_res_box" class="result-container">
+                <span class="result-label">Produktivitas per Hari (BCM/day)</span>
+                <span class="result-main" id="exca_day">0.0</span>
+                <div class="result-item"><span class="result-label">Prod/hr:</span><span class="result-val" id="exca_hr">0.0 BCM</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="haul-section" class="calc-section">
+        <div class="feature-card">
+            <div class="input-group"><label>Unit Model</label><input type="text" id="haul_unit_name" placeholder="Scania P410"></div>
+            <div class="input-group"><label>Vessel Capacity (BCM)</label><input type="number" id="vessel_bcm" value="20.5"><small>*input pakai data BCM</small></div>
+            <div class="input-group"><label>Cycle Time (min)</label><input type="number" id="haul_ct" value="10.9"></div>
+            <div class="input-group"><label>EWH (Jam)</label><input type="number" id="haul_ewh" value="14"></div>
+            <button class="btn-calc" onclick="calcHaul()">Calculate Hauler</button>
+            <div id="haul_res_box" class="result-container">
+                <span class="result-label">Produktivitas per Hari (BCM/day)</span>
+                <span class="result-main" id="haul_day">0.0</span>
+                <div class="result-item"><span class="result-label">Prod/hr:</span><span class="result-val" id="haul_hr">0.0 BCM</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cycle-section" class="calc-section">
+        <div class="feature-card">
+            <div class="input-group"><label>Distance (m)</label><input type="number" id="dist" value="1000"></div>
+            <div class="input-group"><label>Speed Loaded (km/h)</label><input type="number" id="s_load" value="25"></div>
+            <div class="input-group"><label>Speed Empty (km/h)</label><input type="number" id="s_empty" value="20"></div>
+            <div class="input-group"><label>Loading Time (min)</label><input type="number" id="t_load" value="2"></div>
+            <div class="input-group"><label>Dumping Time (min)</label><input type="number" id="t_dump" value="0.5"></div>
+            <div class="input-group"><label>Waktu Antri (min)</label><input type="number" id="t_queue" value="3"></div>
+            <div class="input-group"><label>Vessel Capacity (BCM)</label><input type="number" id="v_cap" value="28"></div>
+            <button class="btn-calc" onclick="calcCycle()">Calculate Cycle</button>
+            <div id="cycle_res_box" class="result-container">
+                <div class="result-item"><span class="result-label">Cycle Time:</span><span class="result-val" id="res_ct">0.0 min</span></div>
+                <div class="result-item"><span class="result-label">Trips / Hour:</span><span class="result-val" id="res_trips">0.0</span></div>
+                <span class="result-label">Produktivitas:</span>
+                <span class="result-main" id="res_prod">0.0 BCM/hr</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showTab(type) {
+        document.querySelectorAll('.calc-section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(type + '-section').classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    function calcCycle() {
+        const dist = parseFloat(document.getElementById('dist').value);
+        const sLoad = parseFloat(document.getElementById('s_load').value);
+        const sEmpty = parseFloat(document.getElementById('s_empty').value);
+        const tLoad = parseFloat(document.getElementById('t_load').value);
+        const tDump = parseFloat(document.getElementById('t_dump').value);
+        const tQueue = parseFloat(document.getElementById('t_queue').value);
+        const vCap = parseFloat(document.getElementById('v_cap').value);
+
+        const travelLoaded = dist / (sLoad * 1000 / 60);
+        const travelEmpty = dist / (sEmpty * 1000 / 60);
+        const totalCT = travelLoaded + travelEmpty + tLoad + tDump + tQueue;
+        const trips = 60 / totalCT;
+        const prod = trips * vCap;
+
+        document.getElementById('res_ct').innerText = totalCT.toFixed(1) + " min";
+        document.getElementById('res_trips').innerText = trips.toFixed(2);
+        document.getElementById('res_prod').innerText = prod.toFixed(2) + " BCM/hr";
+        document.getElementById('cycle_res_box').style.display = 'block';
+    }
+
+    function calcExca() {
+        const bucket = parseFloat(document.getElementById('bucket').value);
+        const ff = parseFloat(document.getElementById('exca_ff').value);
+        const ct = parseFloat(document.getElementById('exca_ct').value);
+        const sf = parseFloat(document.getElementById('sf').value);
+        const eff = parseFloat(document.getElementById('exca_eff').value);
+        const ewh = parseFloat(document.getElementById('exca_ewh').value);
+
+        const prodHr = ((3600 * bucket * ff * eff) / sf) / ct;
+        const prodDay = ewh * prodHr;
+
+        document.getElementById('exca_day').innerText = prodDay.toFixed(1);
+        document.getElementById('exca_hr').innerText = prodHr.toFixed(1) + " BCM";
+        document.getElementById('exca_res_box').style.display = 'block';
+    }
+
+    function calcHaul() {
+        const vessel = parseFloat(document.getElementById('vessel_bcm').value);
+        const ctMin = parseFloat(document.getElementById('haul_ct').value);
+        const ewh = parseFloat(document.getElementById('haul_ewh').value);
+
+        const prodHr = (60 * vessel) / ctMin;
+        const prodDay = ewh * prodHr;
+
+        document.getElementById('haul_day').innerText = prodDay.toFixed(1);
+        document.getElementById('haul_hr').innerText = prodHr.toFixed(1) + " BCM";
+        document.getElementById('haul_res_box').style.display = 'block';
+    }
+</script>
+</body>
+</html>

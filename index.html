@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9198920077251192"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,6 +25,7 @@
       <div class="navbar-links" id="navLinks">
         <a href="#features">Fitur</a>
         <a href="#pricing">Harga</a>
+        <a href="#demo">Demo</a>
         <a href="tutorial.html">Tutorial</a>
         <a href="#download">Unduh</a>
       </div>
@@ -67,6 +71,15 @@
       </div>
     </div>
   </section>
+
+  <!-- AD: After About -->
+  <div class="ad-container">
+    <div class="container">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9198920077251192" data-ad-slot="auto"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
 
   <!-- FEATURES -->
   <section class="section" id="features" style="background: var(--bg-secondary);">
@@ -115,6 +128,15 @@
       </div>
     </div>
   </section>
+
+  <!-- AD: After Features -->
+  <div class="ad-container">
+    <div class="container">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9198920077251192" data-ad-slot="auto"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
 
   <!-- FREE VS PREMIUM -->
   <section class="section comparison" id="comparison">
@@ -198,6 +220,110 @@
     </div>
   </section>
 
+  <!-- DEMO CALCULATOR -->
+  <section class="section" id="demo">
+    <div class="container">
+      <h2 class="section-title">Demo <span class="gold-text">Kalkulator Produktivitas</span></h2>
+      <p class="section-subtitle">Coba langsung kalkulator produktivitas tambang PITWISE. Hitung estimasi output
+        Excavator, Hauler, dan Hauling Cycle secara instan.</p>
+
+      <div class="demo-calculator">
+        <div class="demo-tabs">
+          <button class="demo-tab active" onclick="showDemoTab('demo-exca')">⛏️ Excavator</button>
+          <button class="demo-tab" onclick="showDemoTab('demo-haul')">🚛 Hauler</button>
+          <button class="demo-tab" onclick="showDemoTab('demo-cycle')">🔄 Hauling Cycle</button>
+        </div>
+
+        <!-- EXCAVATOR -->
+        <div id="demo-exca" class="demo-panel active">
+          <div class="demo-grid">
+            <div class="demo-inputs">
+              <div class="demo-input-group"><label>Unit Model</label><input type="text" id="d_exca_unit"
+                  placeholder="PC-1250"></div>
+              <div class="demo-input-group"><label>Bucket Capacity (m³)</label><input type="number" id="d_bucket"
+                  value="3.6"></div>
+              <div class="demo-input-group"><label>Fill Factor</label><input type="number" id="d_exca_ff" value="0.85">
+              </div>
+              <div class="demo-input-group"><label>Cycle Time (sec)</label><input type="number" id="d_exca_ct"
+                  value="24.0"></div>
+              <div class="demo-input-group"><label>Swell Factor</label><input type="number" id="d_sf" value="1.35">
+              </div>
+              <div class="demo-input-group"><label>Job Efficiency</label><input type="number" id="d_exca_eff"
+                  value="0.75"></div>
+              <div class="demo-input-group"><label>EWH (Jam)</label><input type="number" id="d_exca_ewh" value="14">
+              </div>
+              <button class="btn btn-primary demo-calc-btn" onclick="demoCalcExca()">Hitung Produktivitas</button>
+            </div>
+            <div class="demo-result" id="d_exca_res">
+              <div class="demo-result-placeholder">
+                <span class="demo-result-icon">📊</span>
+                <p>Tekan tombol <strong>"Hitung Produktivitas"</strong> untuk melihat hasil perhitungan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HAULER -->
+        <div id="demo-haul" class="demo-panel">
+          <div class="demo-grid">
+            <div class="demo-inputs">
+              <div class="demo-input-group"><label>Unit Model</label><input type="text" id="d_haul_unit"
+                  placeholder="Scania P410"></div>
+              <div class="demo-input-group"><label>Vessel Capacity (BCM)</label><input type="number" id="d_vessel"
+                  value="20.5"><small>*Input pakai data BCM</small></div>
+              <div class="demo-input-group"><label>Cycle Time (min)</label><input type="number" id="d_haul_ct"
+                  value="10.9"></div>
+              <div class="demo-input-group"><label>EWH (Jam)</label><input type="number" id="d_haul_ewh" value="14">
+              </div>
+              <button class="btn btn-primary demo-calc-btn" onclick="demoCalcHaul()">Hitung Produktivitas</button>
+            </div>
+            <div class="demo-result" id="d_haul_res">
+              <div class="demo-result-placeholder">
+                <span class="demo-result-icon">📊</span>
+                <p>Tekan tombol <strong>"Hitung Produktivitas"</strong> untuk melihat hasil perhitungan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HAULING CYCLE -->
+        <div id="demo-cycle" class="demo-panel">
+          <div class="demo-grid">
+            <div class="demo-inputs">
+              <div class="demo-input-group"><label>Distance (m)</label><input type="number" id="d_dist" value="1000">
+              </div>
+              <div class="demo-input-group"><label>Speed Loaded (km/h)</label><input type="number" id="d_s_load"
+                  value="25"></div>
+              <div class="demo-input-group"><label>Speed Empty (km/h)</label><input type="number" id="d_s_empty"
+                  value="20"></div>
+              <div class="demo-input-group"><label>Loading Time (min)</label><input type="number" id="d_t_load"
+                  value="2"></div>
+              <div class="demo-input-group"><label>Dumping Time (min)</label><input type="number" id="d_t_dump"
+                  value="0.5"></div>
+              <div class="demo-input-group"><label>Waktu Antri (min)</label><input type="number" id="d_t_queue"
+                  value="3"></div>
+              <div class="demo-input-group"><label>Vessel Capacity (BCM)</label><input type="number" id="d_v_cap"
+                  value="28"></div>
+              <button class="btn btn-primary demo-calc-btn" onclick="demoCalcCycle()">Hitung Produktivitas</button>
+            </div>
+            <div class="demo-result" id="d_cycle_res">
+              <div class="demo-result-placeholder">
+                <span class="demo-result-icon">📊</span>
+                <p>Tekan tombol <strong>"Hitung Produktivitas"</strong> untuk melihat hasil perhitungan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-cta">
+        <p>Ini hanya sebagian kecil dari fitur produktivitas PITWISE. Di aplikasi, Anda bisa melacak output harian,
+          membandingkan dengan target, dan mengekspor laporan.</p>
+        <a href="contoh/webcalc.html" class="btn btn-outline" target="_blank">Lihat Versi Lengkap →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- DOWNLOAD -->
   <section class="section download" id="download" style="background: var(--bg-secondary);">
     <div class="container">
@@ -236,6 +362,15 @@
     </div>
   </section>
 
+  <!-- AD: Before Footer -->
+  <div class="ad-container">
+    <div class="container">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9198920077251192" data-ad-slot="auto"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -252,6 +387,92 @@
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('active'));
+
+    // Demo Calculator
+    function showDemoTab(id) {
+      document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.demo-tab').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    function demoCalcExca() {
+      const bucket = parseFloat(document.getElementById('d_bucket').value);
+      const ff = parseFloat(document.getElementById('d_exca_ff').value);
+      const ct = parseFloat(document.getElementById('d_exca_ct').value);
+      const sf = parseFloat(document.getElementById('d_sf').value);
+      const eff = parseFloat(document.getElementById('d_exca_eff').value);
+      const ewh = parseFloat(document.getElementById('d_exca_ewh').value);
+      const unit = document.getElementById('d_exca_unit').value || 'Excavator';
+      const prodHr = ((3600 * bucket * ff * eff) / sf) / ct;
+      const prodDay = ewh * prodHr;
+      document.getElementById('d_exca_res').innerHTML = `
+        <div class="demo-result-data">
+          <span class="demo-result-unit">${unit}</span>
+          <div class="demo-result-main">
+            <span class="demo-result-number">${prodDay.toFixed(1)}</span>
+            <span class="demo-result-label">BCM / hari</span>
+          </div>
+          <div class="demo-result-detail">
+            <div class="demo-detail-item"><span>Prod/hr</span><strong>${prodHr.toFixed(1)} BCM</strong></div>
+            <div class="demo-detail-item"><span>EWH</span><strong>${ewh} jam</strong></div>
+            <div class="demo-detail-item"><span>Fill Factor</span><strong>${ff}</strong></div>
+            <div class="demo-detail-item"><span>Swell Factor</span><strong>${sf}</strong></div>
+          </div>
+        </div>`;
+    }
+
+    function demoCalcHaul() {
+      const vessel = parseFloat(document.getElementById('d_vessel').value);
+      const ctMin = parseFloat(document.getElementById('d_haul_ct').value);
+      const ewh = parseFloat(document.getElementById('d_haul_ewh').value);
+      const unit = document.getElementById('d_haul_unit').value || 'Hauler';
+      const prodHr = (60 * vessel) / ctMin;
+      const prodDay = ewh * prodHr;
+      document.getElementById('d_haul_res').innerHTML = `
+        <div class="demo-result-data">
+          <span class="demo-result-unit">${unit}</span>
+          <div class="demo-result-main">
+            <span class="demo-result-number">${prodDay.toFixed(1)}</span>
+            <span class="demo-result-label">BCM / hari</span>
+          </div>
+          <div class="demo-result-detail">
+            <div class="demo-detail-item"><span>Prod/hr</span><strong>${prodHr.toFixed(1)} BCM</strong></div>
+            <div class="demo-detail-item"><span>Cycle Time</span><strong>${ctMin} min</strong></div>
+            <div class="demo-detail-item"><span>Vessel</span><strong>${vessel} BCM</strong></div>
+            <div class="demo-detail-item"><span>EWH</span><strong>${ewh} jam</strong></div>
+          </div>
+        </div>`;
+    }
+
+    function demoCalcCycle() {
+      const dist = parseFloat(document.getElementById('d_dist').value);
+      const sLoad = parseFloat(document.getElementById('d_s_load').value);
+      const sEmpty = parseFloat(document.getElementById('d_s_empty').value);
+      const tLoad = parseFloat(document.getElementById('d_t_load').value);
+      const tDump = parseFloat(document.getElementById('d_t_dump').value);
+      const tQueue = parseFloat(document.getElementById('d_t_queue').value);
+      const vCap = parseFloat(document.getElementById('d_v_cap').value);
+      const travelLoaded = dist / (sLoad * 1000 / 60);
+      const travelEmpty = dist / (sEmpty * 1000 / 60);
+      const totalCT = travelLoaded + travelEmpty + tLoad + tDump + tQueue;
+      const trips = 60 / totalCT;
+      const prod = trips * vCap;
+      document.getElementById('d_cycle_res').innerHTML = `
+        <div class="demo-result-data">
+          <span class="demo-result-unit">Hauling Cycle</span>
+          <div class="demo-result-main">
+            <span class="demo-result-number">${prod.toFixed(1)}</span>
+            <span class="demo-result-label">BCM / jam</span>
+          </div>
+          <div class="demo-result-detail">
+            <div class="demo-detail-item"><span>Cycle Time</span><strong>${totalCT.toFixed(1)} min</strong></div>
+            <div class="demo-detail-item"><span>Trips/hr</span><strong>${trips.toFixed(2)}</strong></div>
+            <div class="demo-detail-item"><span>Distance</span><strong>${dist} m</strong></div>
+            <div class="demo-detail-item"><span>Vessel</span><strong>${vCap} BCM</strong></div>
+          </div>
+        </div>`;
+    }
   </script>
 </body>
 
