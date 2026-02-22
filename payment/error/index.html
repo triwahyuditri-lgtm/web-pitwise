@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Gagal — PITWISE</title>
+    <meta name="description" content="Pembayaran premium PITWISE mengalami kendala.">
+    <link rel="icon" href="/asset/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            padding: 24px;
+        }
+
+        .card {
+            max-width: 440px;
+            width: 100%;
+            background: #141414;
+            border: 1px solid #262626;
+            border-radius: 24px;
+            padding: 48px 32px;
+            text-align: center;
+            animation: fadeUp 0.6s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(239, 68, 68, 0.12);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .icon-circle svg {
+            width: 40px;
+            height: 40px;
+            color: #ef4444;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ef4444;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #a3a3a3;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .info-box {
+            background: rgba(239, 68, 68, 0.06);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 32px;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: #a3a3a3;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            color: #e5e5e5;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: #d4a843;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #c49a38;
+        }
+
+        .btn-secondary {
+            background: #1e1e1e;
+            color: #a3a3a3;
+            border: 1px solid #333;
+        }
+
+        .btn-secondary:hover {
+            background: #262626;
+            color: #e5e5e5;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer-text {
+            margin-top: 24px;
+            font-size: 12px;
+            color: #525252;
+        }
+
+        .footer-text a {
+            color: #737373;
+            text-decoration: none;
+        }
+
+        .footer-text a:hover {
+            color: #a3a3a3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img src="/asset/logo.png" alt="PITWISE" class="logo">
+
+        <div class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
+
+        <h1>Pembayaran Gagal</h1>
+
+        <p class="subtitle">
+            Maaf, pembayaran Anda tidak dapat diproses.<br>
+            Silakan coba lagi atau gunakan metode pembayaran lain.
+        </p>
+
+        <div class="info-box">
+            <p>
+                <strong>Kemungkinan penyebab:</strong><br>
+                • Saldo tidak mencukupi<br>
+                • Batas waktu pembayaran terlewat<br>
+                • Gangguan pada penyedia layanan pembayaran
+            </p>
+        </div>
+
+        <div class="buttons">
+            <a href="https://pitwise.web.id" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
+                </svg>
+                Coba Lagi
+            </a>
+
+            <a href="mailto:admin@pitwise.web.id" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                Hubungi Support
+            </a>
+        </div>
+
+        <p class="footer-text">
+            <a href="https://pitwise.web.id">pitwise.web.id</a> · admin@pitwise.web.id
+        </p>
+    </div>
+</body>
+
+</html>
