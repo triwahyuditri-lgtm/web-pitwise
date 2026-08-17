@@ -259,6 +259,51 @@ ol {
   flex-wrap: wrap;
 }
 
+.play-store-icon {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 22px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.play-store-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #32a852;
+}
+
+.play-store-icon-top,
+.play-store-icon-bottom,
+.play-store-icon-tip {
+  position: absolute;
+  z-index: 1;
+}
+
+.play-store-icon-top {
+  inset: 0 0 50%;
+  background: #00a8e8;
+  clip-path: polygon(0 0, 100% 100%, 36% 100%);
+}
+
+.play-store-icon-bottom {
+  inset: 50% 0 0;
+  background: #f6c445;
+  clip-path: polygon(36% 0, 100% 0, 0 100%);
+}
+
+.play-store-icon-tip {
+  top: 6px;
+  right: 0;
+  width: 9px;
+  height: 10px;
+  background: #e94335;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
 /* ========================================
    ABOUT
    ======================================== */
@@ -579,8 +624,8 @@ ol {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
   text-align: center;
 }
 
@@ -611,6 +656,14 @@ ol {
   transition-delay: 0.3s;
 }
 
+.stat-item:nth-child(5) {
+  transition-delay: 0.4s;
+}
+
+.stat-item:nth-child(6) {
+  transition-delay: 0.5s;
+}
+
 .stat-number {
   font-size: 2.4rem;
   font-weight: 800;
@@ -624,6 +677,13 @@ ol {
   color: var(--text-secondary);
   font-weight: 500;
   letter-spacing: 0.3px;
+}
+
+.stats-updated {
+  margin-top: 28px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
 }
 
 /* ========================================
@@ -1178,7 +1238,7 @@ ol {
   }
 
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 
@@ -1212,6 +1272,10 @@ ol {
   .features-grid,
   .pricing-grid {
     grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .navbar-links {
