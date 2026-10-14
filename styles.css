@@ -667,10 +667,7 @@ textarea {
 }
 
 .stats-updated {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  text-align: center;
   padding: 12px 16px;
   border-top: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.015);
@@ -682,8 +679,11 @@ textarea {
 
 .stats-updated::before {
   content: '';
+  display: inline-block;
   width: 6px;
   height: 6px;
+  margin-right: 8px;
+  vertical-align: middle;
   border-radius: 50%;
   background: var(--accent);
 }
@@ -1061,6 +1061,12 @@ textarea {
   text-align: center;
   font-size: 0.875rem;
   color: var(--text-3);
+}
+
+.pricing-note a {
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ========================================
