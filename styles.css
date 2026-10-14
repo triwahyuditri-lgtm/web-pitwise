@@ -259,6 +259,13 @@ ol {
   flex-wrap: wrap;
 }
 
+.btn-with-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .play-store-icon {
   position: relative;
   display: inline-block;
@@ -273,7 +280,7 @@ ol {
   content: '';
   position: absolute;
   inset: 0;
-  background: #32a852;
+  background: #4285f4;
 }
 
 .play-store-icon-top,
@@ -285,13 +292,13 @@ ol {
 
 .play-store-icon-top {
   inset: 0 0 50%;
-  background: #00a8e8;
+  background: #34a853;
   clip-path: polygon(0 0, 100% 100%, 36% 100%);
 }
 
 .play-store-icon-bottom {
   inset: 50% 0 0;
-  background: #f6c445;
+  background: #ea4335;
   clip-path: polygon(36% 0, 100% 0, 0 100%);
 }
 
@@ -300,7 +307,7 @@ ol {
   right: 0;
   width: 9px;
   height: 10px;
-  background: #e94335;
+  background: #fbbc04;
   clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
@@ -665,8 +672,9 @@ ol {
 }
 
 .stat-number {
-  font-size: 2.4rem;
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
   font-weight: 800;
+  white-space: nowrap;
   color: var(--gold);
   line-height: 1;
   text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
@@ -682,7 +690,7 @@ ol {
 .stats-updated {
   margin-top: 28px;
   text-align: center;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 0.78rem;
 }
 
@@ -1071,7 +1079,8 @@ ol {
 
 .footer-links {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 8px 24px;
 }
 
 .footer-links a {
