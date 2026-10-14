@@ -1,6 +1,78 @@
-/* PITWISE — shared site script (navbar, scroll reveal, demo calculator, contact form) */
+/* PITWISE — shared site script (theme, navbar, scroll reveal, demo calculator, contact form) */
 (function () {
   'use strict';
+
+  const root = document.documentElement;
+  const i18n = window.PWI18n || { lang: 'id', onChange() {} };
+
+  // Strings created by this script (the static page copy lives in the HTML and i18n.js)
+  const STRINGS = {
+    id: {
+      themeToLight: 'Ganti ke tema terang',
+      themeToDark: 'Ganti ke tema gelap',
+      calcError: 'Isi semua kolom dengan angka lebih dari 0.',
+      perDay: 'BCM / hari',
+      perHour: 'BCM / jam',
+      outputHr: 'Produksi / jam',
+      trips: 'Ritase / jam',
+      distance: 'Jarak',
+      hours: 'jam',
+      minutes: 'menit',
+      mailSubject: (name) => `Pesan Website PITWISE dari ${name}`,
+      mailName: 'Nama',
+      mailMessage: 'Pesan'
+    },
+    en: {
+      themeToLight: 'Switch to light theme',
+      themeToDark: 'Switch to dark theme',
+      calcError: 'Fill in every field with a number greater than 0.',
+      perDay: 'BCM / day',
+      perHour: 'BCM / hr',
+      outputHr: 'Output / hr',
+      trips: 'Trips / hr',
+      distance: 'Distance',
+      hours: 'hr',
+      minutes: 'min',
+      mailSubject: (name) => `PITWISE website message from ${name}`,
+      mailName: 'Name',
+      mailMessage: 'Message'
+    }
+  };
+  const t = (key) => (STRINGS[i18n.lang] || STRINGS.id)[key];
+
+  // --- Theme (the inline script in <head> sets the initial data-theme) ---
+  const themeBtn = document.getElementById('themeToggle');
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  const lightQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+
+  function storedTheme() {
+    try { return localStorage.getItem('pw-theme'); } catch (e) { return null; }
+  }
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    if (themeColor) themeColor.setAttribute('content', theme === 'light' ? '#f7f6f2' : '#0b0c0e');
+    if (themeBtn) {
+      themeBtn.setAttribute('aria-label', theme === 'light' ? t('themeToDark') : t('themeToLight'));
+    }
+  }
+
+  applyTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('pw-theme', next); } catch (e) { /* storage unavailable */ }
+      applyTheme(next);
+    });
+  }
+
+  // Follow the OS setting until the visitor picks a theme themselves
+  if (lightQuery && lightQuery.addEventListener) {
+    lightQuery.addEventListener('change', (event) => {
+      if (!storedTheme()) applyTheme(event.matches ? 'light' : 'dark');
+    });
+  }
 
   // --- Navbar: mobile menu + scrolled state ---
   const navbar = document.querySelector('.navbar');
@@ -49,9 +121,14 @@
   }
 
   // --- Demo calculator ---
-  const fmt1 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  const fmt2 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const fmtN = new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 });
+  function formatters() {
+    const locale = i18n.lang === 'en' ? 'en-US' : 'id-ID';
+    return {
+      fmt1: new Intl.NumberFormat(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 }),
+      fmt2: new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      fmtN: new Intl.NumberFormat(locale, { maximumFractionDigits: 2 })
+    };
+  }
 
   function escapeHtml(value) {
     return String(value).replace(/[&<>"']/g, (ch) => ({
@@ -70,7 +147,7 @@
   function renderResult(targetId, result) {
     const target = document.getElementById(targetId);
     if (!result) {
-      target.innerHTML = '<p class="demo-error" role="alert">Isi semua kolom dengan angka lebih dari 0.</p>';
+      target.innerHTML = `<p class="demo-error" role="alert">${escapeHtml(t('calcError'))}</p>`;
       return;
     }
     const details = result.details.map(([label, value]) =>
@@ -93,6 +170,7 @@
 
   const calculators = {
     exca() {
+      const { fmt1, fmtN } = formatters();
       const bucket = num('d_bucket');
       const ff = num('d_exca_ff');
       const ct = num('d_exca_ct');
@@ -105,16 +183,17 @@
       return {
         unit: text('d_exca_unit', 'Excavator'),
         value: fmt1.format(prodDay),
-        label: 'BCM / hari',
+        label: t('perDay'),
         details: [
-          ['Produksi / jam', `${fmt1.format(prodHr)} BCM`],
-          ['EWH', `${fmtN.format(ewh)} jam`],
+          [t('outputHr'), `${fmt1.format(prodHr)} BCM`],
+          ['EWH', `${fmtN.format(ewh)} ${t('hours')}`],
           ['Fill Factor', fmtN.format(ff)],
           ['Swell Factor', fmtN.format(sf)]
         ]
       };
     },
     haul() {
+      const { fmt1, fmtN } = formatters();
       const vessel = num('d_vessel');
       const ctMin = num('d_haul_ct');
       const ewh = num('d_haul_ewh');
@@ -124,16 +203,17 @@
       return {
         unit: text('d_haul_unit', 'Hauler'),
         value: fmt1.format(prodDay),
-        label: 'BCM / hari',
+        label: t('perDay'),
         details: [
-          ['Produksi / jam', `${fmt1.format(prodHr)} BCM`],
-          ['Cycle Time', `${fmtN.format(ctMin)} menit`],
+          [t('outputHr'), `${fmt1.format(prodHr)} BCM`],
+          ['Cycle Time', `${fmtN.format(ctMin)} ${t('minutes')}`],
           ['Vessel', `${fmtN.format(vessel)} BCM`],
-          ['EWH', `${fmtN.format(ewh)} jam`]
+          ['EWH', `${fmtN.format(ewh)} ${t('hours')}`]
         ]
       };
     },
     cycle() {
+      const { fmt1, fmt2, fmtN } = formatters();
       const dist = num('d_dist');
       const sLoad = num('d_s_load');
       const sEmpty = num('d_s_empty');
@@ -152,33 +232,40 @@
       return {
         unit: 'Hauling Cycle',
         value: fmt1.format(prod),
-        label: 'BCM / jam',
+        label: t('perHour'),
         details: [
-          ['Cycle Time', `${fmt1.format(totalCT)} menit`],
-          ['Ritase / jam', fmt2.format(trips)],
-          ['Jarak', `${fmtN.format(dist)} m`],
+          ['Cycle Time', `${fmt1.format(totalCT)} ${t('minutes')}`],
+          [t('trips'), fmt2.format(trips)],
+          [t('distance'), `${fmtN.format(dist)} m`],
           ['Vessel', `${fmtN.format(vCap)} BCM`]
         ]
       };
     }
   };
 
-  document.querySelectorAll('[data-calc]').forEach((form) => {
+  const calcForms = Array.from(document.querySelectorAll('[data-calc]'));
+  const shown = new Set();
+
+  function runCalc(form) {
+    renderResult(form.dataset.result, calculators[form.dataset.calc]());
+    shown.add(form);
+  }
+
+  calcForms.forEach((form) => {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      const key = form.dataset.calc;
-      renderResult(form.dataset.result, calculators[key]());
+      runCalc(form);
     });
   });
 
   // Tabs (WAI-ARIA tab pattern with arrow-key support)
   const tabs = Array.from(document.querySelectorAll('.demo-tab'));
   function selectTab(tab, focus) {
-    tabs.forEach((t) => {
-      const selected = t === tab;
-      t.setAttribute('aria-selected', String(selected));
-      t.tabIndex = selected ? 0 : -1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+    tabs.forEach((tb) => {
+      const selected = tb === tab;
+      tb.setAttribute('aria-selected', String(selected));
+      tb.tabIndex = selected ? 0 : -1;
+      document.getElementById(tb.getAttribute('aria-controls')).hidden = !selected;
     });
     if (focus) tab.focus();
   }
@@ -200,9 +287,15 @@
       const name = document.getElementById('contactName').value.trim();
       const email = document.getElementById('contactEmail').value.trim();
       const message = document.getElementById('contactMessage').value.trim();
-      const subject = `Pesan Website PITWISE dari ${name}`;
-      const body = [`Nama: ${name}`, `Email: ${email}`, '', 'Pesan:', message].join('\n');
+      const subject = t('mailSubject')(name);
+      const body = [`${t('mailName')}: ${name}`, `Email: ${email}`, '', `${t('mailMessage')}:`, message].join('\n');
       window.location.href = `mailto:admin@pitwise.web.id?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   }
+
+  // Re-render language-dependent output when the visitor switches language
+  i18n.onChange(() => {
+    applyTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+    shown.forEach(runCalc);
+  });
 })();
