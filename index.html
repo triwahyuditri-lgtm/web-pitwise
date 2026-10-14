@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PITWISE — Alat Lapangan Tambang Offline</title>
-  <meta name="description"
+  <title data-i18n="home.title">PITWISE — Alat Lapangan Tambang Offline</title>
+  <meta name="description" data-i18n-attr="content:home.desc"
     content="PITWISE — Alat lapangan tambang offline untuk pelacakan produktivitas, pengukuran, dan perhitungan lapangan. Dibuat untuk profesional pertambangan.">
   <meta name="theme-color" content="#0b0c0e">
   <meta property="og:type" content="website">
@@ -22,7 +22,26 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    // Set theme and language before first paint so the page does not flash
+    (function (d) {
+      d.classList.add('js');
+      var theme, lang;
+      try { theme = localStorage.getItem('pw-theme'); lang = localStorage.getItem('pw-lang'); } catch (e) { }
+      var q = /[?&]lang=(en|id)\b/.exec(location.search);
+      if (q) lang = q[1];
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      d.setAttribute('data-theme', theme);
+      if (lang === 'en') {
+        d.lang = 'en';
+        d.classList.add('lang-pending');
+        setTimeout(function () { d.classList.remove('lang-pending'); }, 1500);
+      }
+    })(document.documentElement);
+  </script>
+  <script defer src="i18n.js"></script>
   <script defer src="main.js"></script>
   <!-- Google AdSense (Auto ads) -->
   <meta name="google-adsense-account" content="ca-pub-9198920077251192">
@@ -31,7 +50,7 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Lewati ke konten</a>
 
   <!-- ICON SPRITE -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -59,23 +78,33 @@
 
   <!-- NAVBAR -->
   <header class="navbar">
-    <nav class="container" aria-label="Navigasi utama">
+    <nav class="container" aria-label="Navigasi utama" data-i18n-attr="aria-label:nav.aria">
       <a href="index.html" class="navbar-logo"><img src="asset/web/logo-96.png" alt="" class="navbar-logo-img"
-          width="34" height="34">PITWISE</a>
-      <button class="navbar-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false"
-        aria-controls="navMenu">
-        <span></span><span></span><span></span>
-      </button>
+          width="34" height="34"><span class="navbar-wordmark">PITWISE</span></a>
       <div class="navbar-menu" id="navMenu">
         <div class="navbar-links">
-          <a href="#features">Fitur</a>
-          <a href="#preview">Tampilan</a>
-          <a href="#pricing">Harga</a>
-          <a href="#demo">Demo</a>
-          <a href="#contact">Kontak</a>
+          <a href="#features" data-i18n="nav.features">Fitur</a>
+          <a href="#preview" data-i18n="nav.preview">Tampilan</a>
+          <a href="#pricing" data-i18n="nav.pricing">Harga</a>
+          <a href="#demo" data-i18n="nav.demo">Demo</a>
+          <a href="#contact" data-i18n="nav.contact">Kontak</a>
         </div>
-        <a href="#download" class="btn btn-primary navbar-cta">Unduh Gratis</a>
+        <a href="#download" class="btn btn-primary navbar-cta" data-i18n="nav.cta">Unduh Gratis</a>
       </div>
+      <div class="nav-tools">
+        <div class="lang-switch" role="group" aria-label="Bahasa / Language">
+          <button type="button" data-set-lang="id" aria-pressed="true" lang="id" title="Bahasa Indonesia">ID</button>
+          <button type="button" data-set-lang="en" aria-pressed="false" lang="en" title="English">EN</button>
+        </div>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Ganti ke tema terang">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" /><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" /></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" /></svg>
+        </button>
+      </div>
+      <button class="navbar-toggle" id="navToggle" aria-label="Buka menu" data-i18n-attr="aria-label:nav.open"
+        aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </header>
 
@@ -85,10 +114,10 @@
     <section class="hero" id="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="hero-badge"><span class="hero-badge-dot">Offline</span> Aplikasi Android untuk tambang
-            terbuka</span>
-          <h1>Pit Anda. Data Anda. <span class="accent-text">Kendali Anda.</span></h1>
-          <p class="hero-lead">PITWISE adalah alat lapangan tambang offline profesional untuk supervisor, tim pit
+          <span class="hero-badge"><span class="hero-badge-dot">Offline</span> <span data-i18n="hero.badge">Aplikasi
+              Android untuk tambang terbuka</span></span>
+          <h1 data-i18n="hero.title">Pit Anda. Data Anda. <span class="accent-text">Kendali Anda.</span></h1>
+          <p class="hero-lead" data-i18n="hero.lead">PITWISE adalah alat lapangan tambang offline profesional untuk supervisor, tim pit
             control, dan engineer produksi. Ukur jarak pada peta GeoPDF dan DXF, estimasi produktivitas, hitung volume,
             dan analisis grade jalan — semua tanpa koneksi internet.</p>
           <div class="hero-buttons">
@@ -100,9 +129,9 @@
                 <path fill="#ea4335" d="M0 22L11 11L15 13.75Z" />
                 <path fill="#fbbc04" d="M15 8.25L20 11L15 13.75L11 11Z" />
               </svg>
-              Dapatkan di Google Play
+              <span data-i18n="hero.cta">Dapatkan di Google Play</span>
             </a>
-            <a href="#demo" class="btn btn-secondary btn-large">Coba Demo Kalkulator
+            <a href="#demo" class="btn btn-secondary btn-large"><span data-i18n="hero.demo">Coba Demo Kalkulator</span>
               <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
           </div>
         </div>
@@ -114,47 +143,47 @@
               fetchpriority="high"></div>
           <div class="float-card float-card-1">
             <span class="float-card-icon"><svg class="icon"><use href="#i-bars" /></svg></span>
-            <div><small>Excavator</small><strong>255,0 BCM / jam</strong></div>
+            <div><small>Excavator</small><strong data-i18n="hero.float1">255,0 BCM / jam</strong></div>
           </div>
           <div class="float-card float-card-2">
             <span class="status-dot"></span>
-            <div><small>GPS · Tanpa sinyal</small><strong>Tracking aktif</strong></div>
+            <div><small data-i18n="hero.float2.label">GPS · Tanpa sinyal</small><strong data-i18n="hero.float2.value">Tracking aktif</strong></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- TRUST STATS -->
-    <section class="trust-stats" aria-label="Statistik Google Play">
+    <section class="trust-stats" aria-label="Statistik Google Play" data-i18n-attr="aria-label:stats.aria">
       <div class="container">
         <div class="stats-panel reveal">
           <div class="stats-grid">
             <div class="stat-item">
-              <span class="stat-number">7,28 rb</span>
-              <span class="stat-label">Pengguna Aktif Harian</span>
+              <span class="stat-number" data-i18n="stats.dau.value">7,28 rb</span>
+              <span class="stat-label" data-i18n="stats.dau">Pengguna Aktif Harian</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number">27,2 rb</span>
-              <span class="stat-label">Pengguna Aktif Bulanan</span>
+              <span class="stat-number" data-i18n="stats.mau.value">27,2 rb</span>
+              <span class="stat-label" data-i18n="stats.mau">Pengguna Aktif Bulanan</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number">53,1 rb</span>
-              <span class="stat-label">Total Instal</span>
+              <span class="stat-number" data-i18n="stats.installs.value">53,1 rb</span>
+              <span class="stat-label" data-i18n="stats.installs">Total Instal</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number">31,7 rb</span>
-              <span class="stat-label">Perangkat Aktif</span>
+              <span class="stat-number" data-i18n="stats.devices.value">31,7 rb</span>
+              <span class="stat-label" data-i18n="stats.devices">Perangkat Aktif</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number">4,3<span class="star">★</span></span>
-              <span class="stat-label">Rating Google Play</span>
+              <span class="stat-number" data-i18n="stats.rating.value">4,3<span class="star">★</span></span>
+              <span class="stat-label" data-i18n="stats.rating">Rating Google Play</span>
             </div>
             <div class="stat-item">
               <span class="stat-number">114</span>
-              <span class="stat-label">Ulasan Google Play</span>
+              <span class="stat-label" data-i18n="stats.reviews">Ulasan Google Play</span>
             </div>
           </div>
-          <p class="stats-updated">Data Google Play per <time datetime="2026-10-13">13 Oktober 2026</time> · pengguna &amp; perangkat aktif rata-rata 28 hari</p>
+          <p class="stats-updated" data-i18n="stats.updated">Data Google Play per <time datetime="2026-10-13">13 Oktober 2026</time> · pengguna &amp; perangkat aktif rata-rata 28 hari</p>
         </div>
       </div>
     </section>
@@ -163,35 +192,35 @@
     <section class="section" id="about">
       <div class="container about-grid">
         <div class="about-text reveal">
-          <span class="eyebrow">Mengapa PITWISE</span>
-          <h2 class="section-title">Dibuat untuk <span class="accent-text">lapangan tambang</span></h2>
-          <p>PITWISE adalah aplikasi Android yang dirancang khusus untuk supervisor tambang, petugas pit control, dan
+          <span class="eyebrow" data-i18n="about.eyebrow">Mengapa PITWISE</span>
+          <h2 class="section-title" data-i18n="about.title">Dibuat untuk <span class="accent-text">lapangan tambang</span></h2>
+          <p data-i18n="about.p1">PITWISE adalah aplikasi Android yang dirancang khusus untuk supervisor tambang, petugas pit control, dan
             engineer produksi. Aplikasi ini menyediakan alat lapangan praktis — pengukuran jarak dan area pada peta
             GeoPDF/DXF, perhitungan volume overburden dan batubara, estimasi produktivitas excavator, dan analisis grade
             jalan — semua dirancang untuk berjalan sepenuhnya secara offline.</p>
-          <p>Di pertambangan terbuka, konektivitas tidak dapat diandalkan. PITWISE menghilangkan ketergantungan itu.
+          <p data-i18n="about.p2">Di pertambangan terbuka, konektivitas tidak dapat diandalkan. PITWISE menghilangkan ketergantungan itu.
             Muat peta lokasi Anda, jalan di pit, lakukan pengukuran, dan buat laporan tanpa perlu sinyal seluler.</p>
         </div>
         <ul class="value-list">
           <li class="value-item reveal">
             <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-offline" /></svg></span>
             <div>
-              <h3>Berjalan tanpa sinyal</h3>
-              <p>Peta, pengukuran, perhitungan, dan laporan tetap berfungsi di area tanpa jangkauan seluler.</p>
+              <h3 data-i18n="value1.title">Berjalan tanpa sinyal</h3>
+              <p data-i18n="value1.text">Peta, pengukuran, perhitungan, dan laporan tetap berfungsi di area tanpa jangkauan seluler.</p>
             </div>
           </li>
           <li class="value-item reveal" style="--delay:.08s">
             <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-target" /></svg></span>
             <div>
-              <h3>Presisi dari geometri peta</h3>
-              <p>Koordinat diambil langsung dari vertex peta GeoPDF dan DXF — tanpa input manual.</p>
+              <h3 data-i18n="value2.title">Presisi dari geometri peta</h3>
+              <p data-i18n="value2.text">Koordinat diambil langsung dari vertex peta GeoPDF dan DXF — tanpa input manual.</p>
             </div>
           </li>
           <li class="value-item reveal" style="--delay:.16s">
             <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-lock" /></svg></span>
             <div>
-              <h3>Data tetap bersama Anda</h3>
-              <p>Semua perhitungan berjalan lokal di perangkat, di lapangan tempat keputusan dibuat.</p>
+              <h3 data-i18n="value3.title">Data tetap bersama Anda</h3>
+              <p data-i18n="value3.text">Semua perhitungan berjalan lokal di perangkat, di lapangan tempat keputusan dibuat.</p>
             </div>
           </li>
         </ul>
@@ -202,36 +231,36 @@
     <section class="section section-alt app-preview" id="preview">
       <div class="container">
         <div class="section-head center reveal">
-          <span class="eyebrow">Tampilan Aplikasi</span>
-          <h2 class="section-title">Lihat PITWISE di <span class="accent-text">perangkat Android</span></h2>
-          <p class="section-subtitle">Dari peta GeoPDF hingga kalkulator produktivitas — semua dalam satu aplikasi.</p>
+          <span class="eyebrow" data-i18n="preview.eyebrow">Tampilan Aplikasi</span>
+          <h2 class="section-title" data-i18n="preview.title">Lihat PITWISE di <span class="accent-text">perangkat Android</span></h2>
+          <p class="section-subtitle" data-i18n="preview.sub">Dari peta GeoPDF hingga kalkulator produktivitas — semua dalam satu aplikasi.</p>
         </div>
       </div>
       <div class="carousel-wrapper">
         <ul class="carousel-track">
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/login.webp" alt="Layar login PITWISE" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Login</span></li>
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/home.webp" alt="Beranda PITWISE" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Beranda</span></li>
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/tambahpeta.webp" alt="Menambah peta PDF atau DXF" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Tambah Peta</span></li>
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/petapdf.webp" alt="Viewer peta GeoPDF" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Viewer GeoPDF</span></li>
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/petadxf.webp" alt="Viewer peta DXF" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Viewer DXF</span></li>
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/basemaptracking.webp" alt="Base map dengan tracking GPS" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Base Map Tracking</span></li>
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/calculator.webp" alt="Kalkulator tambang" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Kalkulator Tambang</span></li>
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/produktifitas.webp" alt="Menu produktivitas" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Produktivitas</span></li>
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/prodexcavator.webp" alt="Produktivitas excavator" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Produktivitas Excavator</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/login.webp" alt="Layar login PITWISE" data-i18n-attr="alt:shot.login.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Login</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/home.webp" alt="Beranda PITWISE" data-i18n-attr="alt:shot.home.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.home">Beranda</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/tambahpeta.webp" alt="Menambah peta PDF atau DXF" data-i18n-attr="alt:shot.addmap.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.addmap">Tambah Peta</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/petapdf.webp" alt="Viewer peta GeoPDF" data-i18n-attr="alt:shot.pdf.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.pdf">Viewer GeoPDF</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/petadxf.webp" alt="Viewer peta DXF" data-i18n-attr="alt:shot.dxf.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.dxf">Viewer DXF</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/basemaptracking.webp" alt="Base map dengan tracking GPS" data-i18n-attr="alt:shot.tracking.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Base Map Tracking</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/calculator.webp" alt="Kalkulator tambang" data-i18n-attr="alt:shot.calc.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.calc">Kalkulator Tambang</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/produktifitas.webp" alt="Menu produktivitas" data-i18n-attr="alt:shot.prod.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.prod">Produktivitas</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/prodexcavator.webp" alt="Produktivitas excavator" data-i18n-attr="alt:shot.exca.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.exca">Produktivitas Excavator</span></li>
           <li class="carousel-slide"><div class="phone"><img src="asset/web/cycletimeloading.webp" alt="Cycle time loading" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Cycle Time Loading</span></li>
-          <li class="carousel-slide"><div class="phone"><img src="asset/web/setting.webp" alt="Pengaturan aplikasi" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Pengaturan</span></li>
+          <li class="carousel-slide"><div class="phone"><img src="asset/web/setting.webp" alt="Pengaturan aplikasi" data-i18n-attr="alt:shot.settings.alt" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.settings">Pengaturan</span></li>
           <!-- Duplicate set for the seamless loop; hidden from assistive tech -->
           <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/login.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Login</span></li>
-          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/home.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Beranda</span></li>
-          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/tambahpeta.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Tambah Peta</span></li>
-          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/petapdf.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Viewer GeoPDF</span></li>
-          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/petadxf.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Viewer DXF</span></li>
+          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/home.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.home">Beranda</span></li>
+          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/tambahpeta.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.addmap">Tambah Peta</span></li>
+          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/petapdf.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.pdf">Viewer GeoPDF</span></li>
+          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/petadxf.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.dxf">Viewer DXF</span></li>
           <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/basemaptracking.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Base Map Tracking</span></li>
-          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/calculator.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Kalkulator Tambang</span></li>
-          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/produktifitas.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Produktivitas</span></li>
-          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/prodexcavator.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Produktivitas Excavator</span></li>
+          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/calculator.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.calc">Kalkulator Tambang</span></li>
+          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/produktifitas.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.prod">Produktivitas</span></li>
+          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/prodexcavator.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.exca">Produktivitas Excavator</span></li>
           <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/cycletimeloading.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Cycle Time Loading</span></li>
-          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/setting.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption">Pengaturan</span></li>
+          <li class="carousel-slide" aria-hidden="true"><div class="phone"><img src="asset/web/setting.webp" alt="" loading="lazy" width="600" height="1333"></div><span class="carousel-caption" data-i18n="shot.settings">Pengaturan</span></li>
         </ul>
       </div>
     </section>
@@ -240,9 +269,9 @@
     <section class="section" id="features">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Fitur Utama</span>
-          <h2 class="section-title">Semua alat lapangan dalam <span class="accent-text">satu aplikasi</span></h2>
-          <p class="section-subtitle">Alat yang dirancang khusus untuk operasi tambang harian — dari pembacaan peta
+          <span class="eyebrow" data-i18n="features.eyebrow">Fitur Utama</span>
+          <h2 class="section-title" data-i18n="features.title">Semua alat lapangan dalam <span class="accent-text">satu aplikasi</span></h2>
+          <p class="section-subtitle" data-i18n="features.sub">Alat yang dirancang khusus untuk operasi tambang harian — dari pembacaan peta
             hingga pelaporan produksi.</p>
         </div>
         <div class="features-grid">
@@ -251,8 +280,8 @@
               <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-map" /></svg></span>
               <span class="feature-index">01</span>
             </div>
-            <h3>Viewer GeoPDF &amp; DXF</h3>
-            <p>Muat peta tambang georeferensi PDF dan DXF langsung di perangkat Anda. Lihat layer, geser, zoom, dan
+            <h3 data-i18n="f1.title">Viewer GeoPDF &amp; DXF</h3>
+            <p data-i18n="f1.text">Muat peta tambang georeferensi PDF dan DXF langsung di perangkat Anda. Lihat layer, geser, zoom, dan
               overlay posisi GPS live pada peta — sepenuhnya offline.</p>
           </article>
           <article class="feature-card reveal" style="--delay:.06s">
@@ -260,8 +289,8 @@
               <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-target" /></svg></span>
               <span class="feature-index">02</span>
             </div>
-            <h3>Presisi Snap-to-Vertex</h3>
-            <p>Ketuk vertex peta dengan snapping otomatis untuk pengukuran jarak dan area yang akurat. Koordinat
+            <h3 data-i18n="f2.title">Presisi Snap-to-Vertex</h3>
+            <p data-i18n="f2.text">Ketuk vertex peta dengan snapping otomatis untuk pengukuran jarak dan area yang akurat. Koordinat
               diekstrak langsung dari geometri peta — tanpa input manual.</p>
           </article>
           <article class="feature-card reveal" style="--delay:.12s">
@@ -269,8 +298,8 @@
               <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-box" /></svg></span>
               <span class="feature-index">03</span>
             </div>
-            <h3>Perhitungan Volume (BCM/LCM)</h3>
-            <p>Hitung volume overburden dan batubara menggunakan Bank Cubic Meters dan Loose Cubic Meters dengan swell
+            <h3 data-i18n="f3.title">Perhitungan Volume (BCM/LCM)</h3>
+            <p data-i18n="f3.text">Hitung volume overburden dan batubara menggunakan Bank Cubic Meters dan Loose Cubic Meters dengan swell
               factor yang dapat dikonfigurasi. Formula standar pertambangan sudah tersedia.</p>
           </article>
           <article class="feature-card reveal">
@@ -278,8 +307,8 @@
               <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-bars" /></svg></span>
               <span class="feature-index">04</span>
             </div>
-            <h3>Estimasi Produktivitas</h3>
-            <p>Estimasi produktivitas excavator dan hauler per shift berdasarkan kapasitas bucket, cycle time, fill
+            <h3 data-i18n="f4.title">Estimasi Produktivitas</h3>
+            <p data-i18n="f4.text">Estimasi produktivitas excavator dan hauler per shift berdasarkan kapasitas bucket, cycle time, fill
               factor, dan efisiensi kerja. Bandingkan aktual dengan target produksi.</p>
           </article>
           <article class="feature-card reveal" style="--delay:.06s">
@@ -287,8 +316,8 @@
               <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-slope" /></svg></span>
               <span class="feature-index">05</span>
             </div>
-            <h3>Analisis Grade Jalan</h3>
-            <p>Hitung gradien hauling road antara dua titik elevasi. Tentukan apakah segmen jalan memenuhi persyaratan
+            <h3 data-i18n="f5.title">Analisis Grade Jalan</h3>
+            <p data-i18n="f5.text">Hitung gradien hauling road antara dua titik elevasi. Tentukan apakah segmen jalan memenuhi persyaratan
               grade aman untuk perjalanan truk bermuatan dan kosong.</p>
           </article>
           <article class="feature-card reveal" style="--delay:.12s">
@@ -296,8 +325,8 @@
               <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-offline" /></svg></span>
               <span class="feature-index">06</span>
             </div>
-            <h3>Arsitektur Offline-First</h3>
-            <p>Semua fitur berjalan secara lokal di perangkat Anda tanpa ketergantungan internet. Peta, perhitungan,
+            <h3 data-i18n="f6.title">Arsitektur Offline-First</h3>
+            <p data-i18n="f6.text">Semua fitur berjalan secara lokal di perangkat Anda tanpa ketergantungan internet. Peta, perhitungan,
               pengukuran, dan laporan semua berfungsi di area tanpa jangkauan seluler.</p>
           </article>
         </div>
@@ -308,37 +337,37 @@
     <section class="section section-alt" id="comparison">
       <div class="container">
         <div class="section-head center reveal">
-          <span class="eyebrow">Paket</span>
-          <h2 class="section-title">Gratis vs <span class="accent-text">Premium</span></h2>
-          <p class="section-subtitle">Mulai tanpa biaya. Upgrade ketika Anda membutuhkan perangkat lengkap.</p>
+          <span class="eyebrow" data-i18n="cmp.eyebrow">Paket</span>
+          <h2 class="section-title" data-i18n="cmp.title">Gratis vs <span class="accent-text">Premium</span></h2>
+          <p class="section-subtitle" data-i18n="cmp.sub">Mulai tanpa biaya. Upgrade ketika Anda membutuhkan perangkat lengkap.</p>
         </div>
         <div class="comparison-grid">
           <div class="comparison-col reveal">
-            <h3>Gratis</h3>
-            <span class="price-tag">Rp 0 — tanpa batas waktu</span>
+            <h3 data-i18n="cmp.free">Gratis</h3>
+            <span class="price-tag" data-i18n="cmp.free.price">Rp 0 — tanpa batas waktu</span>
             <ul class="check-list">
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Viewer peta tunggal (GeoPDF atau DXF)</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Pengukuran jarak dasar</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Kalkulator tambang standar</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Input produktivitas shift tunggal</li>
-              <li class="is-off"><svg class="icon icon-x" aria-hidden="true"><use href="#i-x" /></svg> Mengandung iklan</li>
-              <li class="is-off"><svg class="icon icon-x" aria-hidden="true"><use href="#i-x" /></svg> Tanpa analitik produktivitas lanjutan</li>
-              <li class="is-off"><svg class="icon icon-x" aria-hidden="true"><use href="#i-x" /></svg> Tanpa ekspor data (PDF/CSV)</li>
-              <li class="is-off"><svg class="icon icon-x" aria-hidden="true"><use href="#i-x" /></svg> Tanpa update &amp; dukungan prioritas</li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.free.1">Viewer peta tunggal (GeoPDF atau DXF)</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.free.2">Pengukuran jarak dasar</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.free.3">Kalkulator tambang standar</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.free.4">Input produktivitas shift tunggal</span></li>
+              <li class="is-off"><svg class="icon icon-x" aria-hidden="true"><use href="#i-x" /></svg> <span data-i18n="cmp.free.5">Mengandung iklan</span></li>
+              <li class="is-off"><svg class="icon icon-x" aria-hidden="true"><use href="#i-x" /></svg> <span data-i18n="cmp.free.6">Tanpa analitik produktivitas lanjutan</span></li>
+              <li class="is-off"><svg class="icon icon-x" aria-hidden="true"><use href="#i-x" /></svg> <span data-i18n="cmp.free.7">Tanpa ekspor data (PDF/CSV)</span></li>
+              <li class="is-off"><svg class="icon icon-x" aria-hidden="true"><use href="#i-x" /></svg> <span data-i18n="cmp.free.8">Tanpa update &amp; dukungan prioritas</span></li>
             </ul>
           </div>
           <div class="comparison-col premium reveal" style="--delay:.08s">
-            <h3>Premium <span class="pill">Lengkap</span></h3>
-            <span class="price-tag">Mulai dari Rp 19.000 / bulan</span>
+            <h3 data-i18n="cmp.premium">Premium <span class="pill">Lengkap</span></h3>
+            <span class="price-tag" data-i18n="cmp.premium.price">Mulai dari Rp 19.000 / bulan</span>
             <ul class="check-list">
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Bebas iklan</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Muat peta tanpa batas &amp; multi-map manager</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Pengukuran jarak, area &amp; snap-to-vertex</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Analitik produktivitas lanjutan &amp; multi-shift</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Ekspor data PDF &amp; CSV</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Kalkulator tambang lengkap (BCM/LCM, grade)</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Update fitur prioritas</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Dukungan email prioritas</li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.prem.1">Bebas iklan</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.prem.2">Muat peta tanpa batas &amp; multi-map manager</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.prem.3">Pengukuran jarak, area &amp; snap-to-vertex</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.prem.4">Analitik produktivitas lanjutan &amp; multi-shift</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.prem.5">Ekspor data PDF &amp; CSV</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.prem.6">Kalkulator tambang lengkap (BCM/LCM, grade)</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.prem.7">Update fitur prioritas</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="cmp.prem.8">Dukungan email prioritas</span></li>
             </ul>
           </div>
         </div>
@@ -349,51 +378,51 @@
     <section class="section" id="pricing">
       <div class="container">
         <div class="section-head center reveal">
-          <span class="eyebrow">Harga</span>
-          <h2 class="section-title">Harga <span class="accent-text">transparan</span></h2>
-          <p class="section-subtitle">Tanpa biaya tersembunyi. Kode voucher diterima. Diperpanjang otomatis oleh
+          <span class="eyebrow" data-i18n="pricing.eyebrow">Harga</span>
+          <h2 class="section-title" data-i18n="pricing.title">Harga <span class="accent-text">transparan</span></h2>
+          <p class="section-subtitle" data-i18n="pricing.sub">Tanpa biaya tersembunyi. Kode voucher diterima. Diperpanjang otomatis oleh
             Google Play dan bisa dibatalkan kapan saja.</p>
         </div>
         <div class="pricing-grid">
           <div class="pricing-card reveal">
-            <h3>Bulanan</h3>
-            <div class="price"><small>Rp</small>19.000</div>
-            <span class="period">per bulan</span>
+            <h3 data-i18n="plan.monthly">Bulanan</h3>
+            <div class="price" data-i18n="plan.monthly.price"><small>Rp</small>19.000</div>
+            <span class="period" data-i18n="plan.monthly.period">per bulan</span>
             <ul class="check-list">
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Akses Premium penuh</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Batalkan kapan saja</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Dukungan email standar</li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="plan.full">Akses Premium penuh</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="plan.cancel">Batalkan kapan saja</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="plan.support.std">Dukungan email standar</span></li>
             </ul>
             <a href="https://play.google.com/store/apps/details?id=id.web.pitwise" target="_blank"
-              rel="noopener noreferrer" class="btn btn-secondary btn-block">Berlangganan</a>
+              rel="noopener noreferrer" class="btn btn-secondary btn-block" data-i18n="plan.subscribe">Berlangganan</a>
           </div>
           <div class="pricing-card featured reveal" style="--delay:.06s">
-            <span class="pill">Terbaik</span>
-            <h3>3 Bulan</h3>
-            <div class="price"><small>Rp</small>49.000</div>
-            <span class="period">per 3 bulan — <strong>hemat 14%</strong></span>
+            <span class="pill" data-i18n="plan.best">Terbaik</span>
+            <h3 data-i18n="plan.3m">3 Bulan</h3>
+            <div class="price" data-i18n="plan.3m.price"><small>Rp</small>49.000</div>
+            <span class="period" data-i18n="plan.3m.period">per 3 bulan — <strong>hemat 14%</strong></span>
             <ul class="check-list">
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Akses Premium penuh</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Batalkan kapan saja</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Dukungan email prioritas</li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="plan.full">Akses Premium penuh</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="plan.cancel">Batalkan kapan saja</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="plan.support.prio">Dukungan email prioritas</span></li>
             </ul>
             <a href="https://play.google.com/store/apps/details?id=id.web.pitwise" target="_blank"
-              rel="noopener noreferrer" class="btn btn-primary btn-block">Berlangganan</a>
+              rel="noopener noreferrer" class="btn btn-primary btn-block" data-i18n="plan.subscribe">Berlangganan</a>
           </div>
           <div class="pricing-card reveal" style="--delay:.12s">
-            <h3>Tahunan</h3>
-            <div class="price"><small>Rp</small>169.000</div>
-            <span class="period">per tahun — <strong>hemat 25%</strong></span>
+            <h3 data-i18n="plan.yearly">Tahunan</h3>
+            <div class="price" data-i18n="plan.yearly.price"><small>Rp</small>169.000</div>
+            <span class="period" data-i18n="plan.yearly.period">per tahun — <strong>hemat 25%</strong></span>
             <ul class="check-list">
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Akses Premium penuh</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Batalkan kapan saja</li>
-              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> Dukungan email prioritas</li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="plan.full">Akses Premium penuh</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="plan.cancel">Batalkan kapan saja</span></li>
+              <li><svg class="icon icon-check" aria-hidden="true"><use href="#i-check" /></svg> <span data-i18n="plan.support.prio">Dukungan email prioritas</span></li>
             </ul>
             <a href="https://play.google.com/store/apps/details?id=id.web.pitwise" target="_blank"
-              rel="noopener noreferrer" class="btn btn-secondary btn-block">Berlangganan</a>
+              rel="noopener noreferrer" class="btn btn-secondary btn-block" data-i18n="plan.subscribe">Berlangganan</a>
           </div>
         </div>
-        <p class="pricing-note">Langganan dibeli di dalam aplikasi melalui Google Play Billing dan diperpanjang otomatis
+        <p class="pricing-note" data-i18n="pricing.note">Langganan dibeli di dalam aplikasi melalui Google Play Billing dan diperpanjang otomatis
           sampai dibatalkan. Batalkan kapan saja di
           <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener noreferrer">Langganan
             Google Play</a> ·
@@ -406,14 +435,14 @@
     <section class="section section-alt" id="demo">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Demo Interaktif</span>
-          <h2 class="section-title">Coba <span class="accent-text">kalkulator produktivitas</span></h2>
-          <p class="section-subtitle">Hitung estimasi output Excavator, Hauler, dan Hauling Cycle secara instan —
+          <span class="eyebrow" data-i18n="demo.eyebrow">Demo Interaktif</span>
+          <h2 class="section-title" data-i18n="demo.title">Coba <span class="accent-text">kalkulator produktivitas</span></h2>
+          <p class="section-subtitle" data-i18n="demo.sub">Hitung estimasi output Excavator, Hauler, dan Hauling Cycle secara instan —
             langsung di browser.</p>
         </div>
 
         <div class="demo-calculator reveal">
-          <div class="demo-tabs" role="tablist" aria-label="Jenis kalkulator">
+          <div class="demo-tabs" role="tablist" aria-label="Jenis kalkulator" data-i18n-attr="aria-label:demo.tabs">
             <button class="demo-tab" role="tab" id="tab-exca" aria-selected="true" aria-controls="demo-exca"><svg
                 class="icon" aria-hidden="true"><use href="#i-excavator" /></svg>Excavator</button>
             <button class="demo-tab" role="tab" id="tab-haul" aria-selected="false" aria-controls="demo-haul"
@@ -432,20 +461,20 @@
                     type="number" step="any" min="0" inputmode="decimal" id="d_bucket" value="3.6"></div>
                 <div class="demo-input-group"><label for="d_exca_ff">Fill Factor</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_exca_ff" value="0.85"></div>
-                <div class="demo-input-group"><label for="d_exca_ct">Cycle Time (detik)</label><input class="field"
+                <div class="demo-input-group"><label for="d_exca_ct" data-i18n="demo.ct.sec">Cycle Time (detik)</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_exca_ct" value="24.0"></div>
                 <div class="demo-input-group"><label for="d_sf">Swell Factor</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_sf" value="1.35"></div>
                 <div class="demo-input-group"><label for="d_exca_eff">Job Efficiency</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_exca_eff" value="0.75"></div>
-                <div class="demo-input-group"><label for="d_exca_ewh">EWH (jam)</label><input class="field"
+                <div class="demo-input-group"><label for="d_exca_ewh" data-i18n="demo.ewh">EWH (jam)</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_exca_ewh" value="14"></div>
-                <button type="submit" class="btn btn-primary demo-calc-btn">Hitung Produktivitas</button>
+                <button type="submit" class="btn btn-primary demo-calc-btn" data-i18n="demo.btn">Hitung Produktivitas</button>
               </form>
               <div class="demo-result" id="d_exca_res" aria-live="polite">
                 <div class="demo-result-placeholder">
                   <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-bars" /></svg></span>
-                  <p>Tekan <strong>Hitung Produktivitas</strong> untuk melihat hasil perhitungan.</p>
+                  <p data-i18n="demo.placeholder">Tekan <strong>Hitung Produktivitas</strong> untuk melihat hasil perhitungan.</p>
                 </div>
               </div>
             </div>
@@ -458,18 +487,17 @@
                 <div class="demo-input-group full"><label for="d_haul_unit">Unit Model</label><input class="field"
                     type="text" id="d_haul_unit" placeholder="Scania P410" maxlength="40"></div>
                 <div class="demo-input-group"><label for="d_vessel">Vessel Capacity (BCM)</label><input class="field"
-                    type="number" step="any" min="0" inputmode="decimal" id="d_vessel" value="20.5"><small>*Input
-                    pakai data BCM</small></div>
-                <div class="demo-input-group"><label for="d_haul_ct">Cycle Time (menit)</label><input class="field"
+                    type="number" step="any" min="0" inputmode="decimal" id="d_vessel" value="20.5"><small data-i18n="demo.bcmhint">*Input pakai data BCM</small></div>
+                <div class="demo-input-group"><label for="d_haul_ct" data-i18n="demo.ct.min">Cycle Time (menit)</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_haul_ct" value="10.9"></div>
-                <div class="demo-input-group"><label for="d_haul_ewh">EWH (jam)</label><input class="field"
+                <div class="demo-input-group"><label for="d_haul_ewh" data-i18n="demo.ewh">EWH (jam)</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_haul_ewh" value="14"></div>
-                <button type="submit" class="btn btn-primary demo-calc-btn">Hitung Produktivitas</button>
+                <button type="submit" class="btn btn-primary demo-calc-btn" data-i18n="demo.btn">Hitung Produktivitas</button>
               </form>
               <div class="demo-result" id="d_haul_res" aria-live="polite">
                 <div class="demo-result-placeholder">
                   <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-bars" /></svg></span>
-                  <p>Tekan <strong>Hitung Produktivitas</strong> untuk melihat hasil perhitungan.</p>
+                  <p data-i18n="demo.placeholder">Tekan <strong>Hitung Produktivitas</strong> untuk melihat hasil perhitungan.</p>
                 </div>
               </div>
             </div>
@@ -479,26 +507,26 @@
           <div id="demo-cycle" class="demo-panel" role="tabpanel" aria-labelledby="tab-cycle" hidden>
             <div class="demo-grid">
               <form class="demo-inputs" data-calc="cycle" data-result="d_cycle_res" novalidate>
-                <div class="demo-input-group"><label for="d_dist">Jarak (m)</label><input class="field" type="number"
+                <div class="demo-input-group"><label for="d_dist" data-i18n="demo.dist">Jarak (m)</label><input class="field" type="number"
                     step="any" min="0" inputmode="decimal" id="d_dist" value="1000"></div>
                 <div class="demo-input-group"><label for="d_v_cap">Vessel Capacity (BCM)</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_v_cap" value="28"></div>
-                <div class="demo-input-group"><label for="d_s_load">Kecepatan Isi (km/jam)</label><input class="field"
+                <div class="demo-input-group"><label for="d_s_load" data-i18n="demo.sload">Kecepatan Isi (km/jam)</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_s_load" value="25"></div>
-                <div class="demo-input-group"><label for="d_s_empty">Kecepatan Kosong (km/jam)</label><input
+                <div class="demo-input-group"><label for="d_s_empty" data-i18n="demo.sempty">Kecepatan Kosong (km/jam)</label><input
                     class="field" type="number" step="any" min="0" inputmode="decimal" id="d_s_empty" value="20"></div>
-                <div class="demo-input-group"><label for="d_t_load">Waktu Loading (menit)</label><input class="field"
+                <div class="demo-input-group"><label for="d_t_load" data-i18n="demo.tload">Waktu Loading (menit)</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_t_load" value="2"></div>
-                <div class="demo-input-group"><label for="d_t_dump">Waktu Dumping (menit)</label><input class="field"
+                <div class="demo-input-group"><label for="d_t_dump" data-i18n="demo.tdump">Waktu Dumping (menit)</label><input class="field"
                     type="number" step="any" min="0" inputmode="decimal" id="d_t_dump" value="0.5"></div>
-                <div class="demo-input-group full"><label for="d_t_queue">Waktu Antri (menit)</label><input
+                <div class="demo-input-group full"><label for="d_t_queue" data-i18n="demo.tqueue">Waktu Antri (menit)</label><input
                     class="field" type="number" step="any" min="0" inputmode="decimal" id="d_t_queue" value="3"></div>
-                <button type="submit" class="btn btn-primary demo-calc-btn">Hitung Produktivitas</button>
+                <button type="submit" class="btn btn-primary demo-calc-btn" data-i18n="demo.btn">Hitung Produktivitas</button>
               </form>
               <div class="demo-result" id="d_cycle_res" aria-live="polite">
                 <div class="demo-result-placeholder">
                   <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-bars" /></svg></span>
-                  <p>Tekan <strong>Hitung Produktivitas</strong> untuk melihat hasil perhitungan.</p>
+                  <p data-i18n="demo.placeholder">Tekan <strong>Hitung Produktivitas</strong> untuk melihat hasil perhitungan.</p>
                 </div>
               </div>
             </div>
@@ -506,10 +534,10 @@
         </div>
 
         <div class="demo-cta reveal">
-          <p>Ini hanya sebagian kecil dari fitur produktivitas PITWISE. Di aplikasi, Anda bisa melacak output harian,
+          <p data-i18n="demo.cta">Ini hanya sebagian kecil dari fitur produktivitas PITWISE. Di aplikasi, Anda bisa melacak output harian,
             membandingkan dengan target, dan mengekspor laporan.</p>
           <a href="https://play.google.com/store/apps/details?id=id.web.pitwise" target="_blank"
-            rel="noopener noreferrer" class="btn btn-secondary">Dapatkan di Google Play <svg class="icon"
+            rel="noopener noreferrer" class="btn btn-secondary"><span data-i18n="demo.cta.btn">Dapatkan di Google Play</span> <svg class="icon"
               aria-hidden="true"><use href="#i-arrow" /></svg></a>
         </div>
       </div>
@@ -519,42 +547,42 @@
     <section class="section" id="testimonials">
       <div class="container">
         <div class="section-head center reveal">
-          <span class="eyebrow">Testimoni</span>
-          <h2 class="section-title">Dipercaya oleh <span class="accent-text">profesional tambang</span></h2>
-          <p class="section-subtitle">Apa kata mereka yang sudah menggunakan PITWISE di lapangan.</p>
+          <span class="eyebrow" data-i18n="testi.eyebrow">Testimoni</span>
+          <h2 class="section-title" data-i18n="testi.title">Dipercaya oleh <span class="accent-text">profesional tambang</span></h2>
+          <p class="section-subtitle" data-i18n="testi.sub">Apa kata mereka yang sudah menggunakan PITWISE di lapangan.</p>
         </div>
         <div class="testimonials-grid">
           <figure class="testimonial-card reveal">
-            <div class="testimonial-stars" role="img" aria-label="5 dari 5 bintang">
+            <div class="testimonial-stars" role="img" aria-label="5 dari 5 bintang" data-i18n-attr="aria-label:testi.stars">
               <svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg>
             </div>
-            <blockquote class="testimonial-text">"Sangat membantu di lapangan. Dulu harus bawa laptop untuk buka peta,
+            <blockquote class="testimonial-text" data-i18n="testi.1">"Sangat membantu di lapangan. Dulu harus bawa laptop untuk buka peta,
               sekarang cukup pakai HP. Pengukuran jarak dan area akurat."</blockquote>
             <figcaption class="testimonial-author">
               <span class="testimonial-avatar" aria-hidden="true">AS</span>
-              <div><strong>Andi S.</strong><span>Supervisor Tambang, Kalimantan Selatan</span></div>
+              <div><strong>Andi S.</strong><span data-i18n="testi.1.role">Supervisor Tambang, Kalimantan Selatan</span></div>
             </figcaption>
           </figure>
           <figure class="testimonial-card reveal" style="--delay:.08s">
-            <div class="testimonial-stars" role="img" aria-label="5 dari 5 bintang">
+            <div class="testimonial-stars" role="img" aria-label="5 dari 5 bintang" data-i18n-attr="aria-label:testi.stars">
               <svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg>
             </div>
-            <blockquote class="testimonial-text">"Fitur kalkulator produktivitas excavator sangat berguna untuk
+            <blockquote class="testimonial-text" data-i18n="testi.2">"Fitur kalkulator produktivitas excavator sangat berguna untuk
               monitoring harian. Data langsung bisa dibandingkan dengan target produksi."</blockquote>
             <figcaption class="testimonial-author">
               <span class="testimonial-avatar" aria-hidden="true">RH</span>
-              <div><strong>Rizky H.</strong><span>Pit Control Officer, Kalimantan Timur</span></div>
+              <div><strong>Rizky H.</strong><span data-i18n="testi.2.role">Pit Control Officer, Kalimantan Timur</span></div>
             </figcaption>
           </figure>
           <figure class="testimonial-card reveal" style="--delay:.16s">
-            <div class="testimonial-stars" role="img" aria-label="5 dari 5 bintang">
+            <div class="testimonial-stars" role="img" aria-label="5 dari 5 bintang" data-i18n-attr="aria-label:testi.stars">
               <svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg><svg class="icon"><use href="#i-star" /></svg>
             </div>
-            <blockquote class="testimonial-text">"Aplikasi yang memang dibutuhkan di lapangan. Offline, ringan, dan
+            <blockquote class="testimonial-text" data-i18n="testi.3">"Aplikasi yang memang dibutuhkan di lapangan. Offline, ringan, dan
               fiturnya sesuai kebutuhan operasional tambang. Sudah recommend ke tim."</blockquote>
             <figcaption class="testimonial-author">
               <span class="testimonial-avatar" aria-hidden="true">DW</span>
-              <div><strong>Dwi W.</strong><span>Production Engineer, Sumatera Selatan</span></div>
+              <div><strong>Dwi W.</strong><span data-i18n="testi.3.role">Production Engineer, Sumatera Selatan</span></div>
             </figcaption>
           </figure>
         </div>
@@ -566,28 +594,25 @@
       <div class="container">
         <div class="download-panel reveal">
           <div>
-            <span class="eyebrow">Unduh</span>
-            <h2 class="section-title">Siap bawa PITWISE <span class="accent-text">ke pit?</span></h2>
-            <p class="section-subtitle">Dapatkan aplikasi resmi PITWISE di Google Play Store. Aman, selalu update
+            <span class="eyebrow" data-i18n="dl.eyebrow">Unduh</span>
+            <h2 class="section-title" data-i18n="dl.title">Siap bawa PITWISE <span class="accent-text">ke pit?</span></h2>
+            <p class="section-subtitle" data-i18n="dl.sub">Dapatkan aplikasi resmi PITWISE di Google Play Store. Aman, selalu update
               terbaru, dan siap meningkatkan produktivitas tambang Anda.</p>
             <ul class="security-badges">
-              <li class="security-badge"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg>Bebas
-                Malware</li>
-              <li class="security-badge"><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Google Play
-                Protect</li>
-              <li class="security-badge"><svg class="icon" aria-hidden="true"><use href="#i-lock" /></svg>Data Aman &amp;
-                Privat</li>
+              <li class="security-badge"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span data-i18n="dl.malware">Bebas Malware</span></li>
+              <li class="security-badge"><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Google Play Protect</li>
+              <li class="security-badge"><svg class="icon" aria-hidden="true"><use href="#i-lock" /></svg><span data-i18n="dl.private">Data Aman &amp; Privat</span></li>
             </ul>
           </div>
           <div class="download-action">
             <a class="play-badge"
               href="https://play.google.com/store/apps/details?id=id.web.pitwise&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
               target="_blank" rel="noopener noreferrer">
-              <img alt="Temukan di Google Play"
+              <img alt="Temukan di Google Play" data-i18n-attr="alt:dl.badge.alt;src:dl.badge.src"
                 src="https://play.google.com/intl/en_us/badges/static/images/badges/id_badge_web_generic.png"
                 width="248" height="96" loading="lazy">
             </a>
-            <small>Gratis diunduh · Android</small>
+            <small data-i18n="dl.small">Gratis diunduh · Android</small>
           </div>
         </div>
       </div>
@@ -597,12 +622,12 @@
     <section class="section section-alt" id="about-us">
       <div class="container company-grid">
         <div class="about-us-text reveal">
-          <span class="eyebrow">Tentang Kami</span>
-          <h2 class="section-title">Tentang <span class="accent-text">PITWISE</span></h2>
-          <p>PITWISE dikembangkan oleh tim yang memahami kebutuhan lapangan pertambangan terbuka di Indonesia. Dengan
+          <span class="eyebrow" data-i18n="aboutus.eyebrow">Tentang Kami</span>
+          <h2 class="section-title" data-i18n="aboutus.title">Tentang <span class="accent-text">PITWISE</span></h2>
+          <p data-i18n="aboutus.p1">PITWISE dikembangkan oleh tim yang memahami kebutuhan lapangan pertambangan terbuka di Indonesia. Dengan
             pengalaman langsung di industri tambang batubara, kami merancang alat yang benar-benar dibutuhkan oleh
             supervisor, pit control, dan engineer produksi.</p>
-          <p>Misi kami sederhana: <strong>membawa teknologi GIS dan pelaporan produksi ke genggaman tangan pekerja
+          <p data-i18n="aboutus.p2">Misi kami sederhana: <strong>membawa teknologi GIS dan pelaporan produksi ke genggaman tangan pekerja
               lapangan</strong>, tanpa memerlukan koneksi internet, tanpa pelatihan rumit, dan tanpa biaya mahal.</p>
           <div class="about-us-details">
             <div class="about-detail-item">
@@ -611,7 +636,7 @@
             </div>
             <div class="about-detail-item">
               <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg></span>
-              <div><strong>Lokasi</strong><span>Indonesia</span></div>
+              <div><strong data-i18n="aboutus.location">Lokasi</strong><span>Indonesia</span></div>
             </div>
             <div class="about-detail-item">
               <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg></span>
@@ -626,19 +651,19 @@
         </div>
 
         <div class="contact-card reveal" id="contact" style="--delay:.08s">
-          <h3>Dukungan Teknis</h3>
-          <p>Butuh bantuan dengan instalasi, lisensi, atau masalah teknis? Kirim pesan dan tim dukungan kami akan
+          <h3 data-i18n="contact.title">Dukungan Teknis</h3>
+          <p data-i18n="contact.text">Butuh bantuan dengan instalasi, lisensi, atau masalah teknis? Kirim pesan dan tim dukungan kami akan
             merespons dalam satu hari kerja.</p>
           <form class="contact-form" id="contactForm">
             <div class="form-row">
-              <div><label for="contactName">Nama</label><input class="field" type="text" id="contactName" name="name"
-                  placeholder="Nama Anda" autocomplete="name" required></div>
+              <div><label for="contactName" data-i18n="contact.name">Nama</label><input class="field" type="text" id="contactName" name="name"
+                  placeholder="Nama Anda" data-i18n-attr="placeholder:contact.name.ph" autocomplete="name" required></div>
               <div><label for="contactEmail">Email</label><input class="field" type="email" id="contactEmail"
-                  name="email" placeholder="nama@perusahaan.com" autocomplete="email" required></div>
+                  name="email" placeholder="nama@perusahaan.com" data-i18n-attr="placeholder:contact.email.ph" autocomplete="email" required></div>
             </div>
-            <div><label for="contactMessage">Pesan</label><textarea class="field" id="contactMessage" name="message"
-                placeholder="Ceritakan kendala Anda" required></textarea></div>
-            <button type="submit" class="btn btn-primary btn-block">Kirim via Email</button>
+            <div><label for="contactMessage" data-i18n="contact.message">Pesan</label><textarea class="field" id="contactMessage" name="message"
+                placeholder="Ceritakan kendala Anda" data-i18n-attr="placeholder:contact.message.ph" required></textarea></div>
+            <button type="submit" class="btn btn-primary btn-block" data-i18n="contact.send">Kirim via Email</button>
           </form>
           <a href="mailto:admin@pitwise.web.id" class="contact-email"><svg class="icon" aria-hidden="true"><use
                 href="#i-mail" /></svg>admin@pitwise.web.id</a>
@@ -654,37 +679,37 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="navbar-logo"><img src="asset/web/logo-96.png" alt="" class="navbar-logo-img"
-              width="34" height="34" loading="lazy">PITWISE</a>
-          <p>Alat lapangan tambang offline untuk supervisor, pit control, dan engineer produksi.</p>
+              width="34" height="34" loading="lazy"><span class="navbar-wordmark">PITWISE</span></a>
+          <p data-i18n="footer.desc">Alat lapangan tambang offline untuk supervisor, pit control, dan engineer produksi.</p>
         </div>
         <div class="footer-col">
-          <h4>Produk</h4>
+          <h4 data-i18n="footer.product">Produk</h4>
           <div class="footer-links">
-            <a href="index.html#features">Fitur</a>
-            <a href="index.html#pricing">Harga</a>
-            <a href="index.html#demo">Demo</a>
-            <a href="index.html#download">Unduh</a>
+            <a href="index.html#features" data-i18n="nav.features">Fitur</a>
+            <a href="index.html#pricing" data-i18n="nav.pricing">Harga</a>
+            <a href="index.html#demo" data-i18n="nav.demo">Demo</a>
+            <a href="index.html#download" data-i18n="nav.download">Unduh</a>
           </div>
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
           <div class="footer-links">
-            <a href="privacy.html">Kebijakan Privasi</a>
-            <a href="terms.html">Syarat Layanan</a>
+            <a href="privacy.html" data-i18n="footer.privacy">Kebijakan Privasi</a>
+            <a href="terms.html" data-i18n="footer.terms">Syarat Layanan</a>
           </div>
         </div>
         <div class="footer-col">
-          <h4>Kontak</h4>
+          <h4 data-i18n="footer.contact">Kontak</h4>
           <div class="footer-links">
             <a href="mailto:admin@pitwise.web.id">admin@pitwise.web.id</a>
             <a href="https://www.tiktok.com/@pitwise.app" target="_blank" rel="noopener noreferrer"
-              aria-label="TikTok @pitwise.app (buka di tab baru)">TikTok @pitwise.app</a>
+              aria-label="TikTok @pitwise.app (buka di tab baru)" data-i18n-attr="aria-label:footer.tiktok">TikTok @pitwise.app</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">&copy; 2026 PITWISE. Hak cipta dilindungi.</span>
-        <span class="footer-tagline">Dibuat di Indonesia untuk tambang Indonesia.</span>
+        <span class="footer-copy" data-i18n="footer.copy">&copy; 2026 PITWISE. Hak cipta dilindungi.</span>
+        <span class="footer-tagline" data-i18n="footer.tagline">Dibuat di Indonesia untuk tambang Indonesia.</span>
       </div>
     </div>
   </footer>
