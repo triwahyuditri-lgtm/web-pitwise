@@ -3,14 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="asset/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Kebijakan Privasi PITWISE — Pelajari bagaimana kami menangani data dan melindungi privasi Anda.">
     <title>Kebijakan Privasi — PITWISE</title>
+    <meta name="theme-color" content="#0b0c0e">
+    <link rel="icon" type="image/png" href="asset/web/logo-96.png">
+    <link rel="apple-touch-icon" href="asset/web/logo-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.classList.add('js');</script>
+    <script defer src="main.js"></script>
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9198920077251192"
         crossorigin="anonymous"></script>
@@ -18,25 +25,31 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="navbar-logo"><img src="asset/logo.png" alt="PITWISE"
-                    class="navbar-logo-img">PITWISE</a>
-            <div class="navbar-links" id="navLinks">
-                <a href="index.html#features">Fitur</a>
-                <a href="index.html#pricing">Harga</a>
+    <a class="skip-link" href="#main">Lewati ke konten</a>
 
-                <a href="index.html#download">Unduh</a>
-            </div>
-            <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <nav class="container" aria-label="Navigasi utama">
+            <a href="index.html" class="navbar-logo"><img src="asset/web/logo-96.png" alt="" class="navbar-logo-img"
+                    width="34" height="34">PITWISE</a>
+            <button class="navbar-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false"
+                aria-controls="navMenu">
                 <span></span><span></span><span></span>
             </button>
-        </div>
-    </nav>
+            <div class="navbar-menu" id="navMenu">
+                <div class="navbar-links">
+                    <a href="index.html#features">Fitur</a>
+                    <a href="index.html#pricing">Harga</a>
+                    <a href="index.html#demo">Demo</a>
+                    <a href="index.html#contact">Kontak</a>
+                </div>
+                <a href="index.html#download" class="btn btn-primary navbar-cta">Unduh Gratis</a>
+            </div>
+        </nav>
+    </header>
 
     <!-- KEBIJAKAN PRIVASI -->
-    <section class="legal-page">
+    <main id="main" class="legal-page">
         <div class="container">
             <h1>Kebijakan Privasi</h1>
             <p class="last-updated">Terakhir diperbarui: 28 Februari 2026</p>
@@ -190,35 +203,59 @@
             <p>Email: <a href="mailto:admin@pitwise.web.id">admin@pitwise.web.id</a></p>
             <p>Situs web: <a href="https://pitwise.web.id">https://pitwise.web.id</a></p>
         </div>
-    </section>
+    </main>
 
     <!-- AD: Before Footer -->
-    <div class="ad-container">
+    <aside class="ad-container" aria-label="Iklan">
         <div class="container">
+            <span class="ad-label">Iklan</span>
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9198920077251192" data-ad-slot="auto"
                 data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
-    </div>
+    </aside>
 
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
-            <span class="footer-copy">&copy; 2026 PITWISE. Hak cipta dilindungi.</span>
-            <div class="footer-links">
-                <a href="https://www.tiktok.com/@pitwise.app" target="_blank" rel="noopener noreferrer"
-                    aria-label="TikTok PITWISE (buka di tab baru)">TikTok @pitwise.app</a>
-                <a href="privacy.html">Kebijakan Privasi</a>
-                <a href="terms.html">Syarat Layanan</a>
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="index.html" class="navbar-logo"><img src="asset/web/logo-96.png" alt="" class="navbar-logo-img"
+                            width="34" height="34" loading="lazy">PITWISE</a>
+                    <p>Alat lapangan tambang offline untuk supervisor, pit control, dan engineer produksi.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Produk</h4>
+                    <div class="footer-links">
+                        <a href="index.html#features">Fitur</a>
+                        <a href="index.html#pricing">Harga</a>
+                        <a href="index.html#demo">Demo</a>
+                        <a href="index.html#download">Unduh</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <div class="footer-links">
+                        <a href="privacy.html">Kebijakan Privasi</a>
+                        <a href="terms.html">Syarat Layanan</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Kontak</h4>
+                    <div class="footer-links">
+                        <a href="mailto:admin@pitwise.web.id">admin@pitwise.web.id</a>
+                        <a href="https://www.tiktok.com/@pitwise.app" target="_blank" rel="noopener noreferrer"
+                            aria-label="TikTok @pitwise.app (buka di tab baru)">TikTok @pitwise.app</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 PITWISE. Hak cipta dilindungi.</span>
+                <span class="footer-tagline">Dibuat di Indonesia untuk tambang Indonesia.</span>
             </div>
         </div>
     </footer>
 
-    <script>
-        const toggle = document.getElementById('navToggle');
-        const links = document.getElementById('navLinks');
-        toggle.addEventListener('click', () => links.classList.toggle('active'));
-    </script>
 </body>
 
 </html>
