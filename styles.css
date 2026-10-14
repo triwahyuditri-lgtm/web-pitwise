@@ -1631,36 +1631,6 @@ textarea {
 }
 
 /* ========================================
-   AD CONTAINER
-   ======================================== */
-.ad-container {
-  padding: 28px 0;
-}
-
-.ad-container .container {
-  text-align: center;
-}
-
-.ad-label {
-  display: block;
-  margin-bottom: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-3);
-}
-
-.ad-container ins {
-  background: transparent;
-}
-
-/* Collapse the slot (and its label) when AdSense has nothing to show */
-.ad-container:has(ins[data-ad-status='unfilled']) {
-  display: none;
-}
-
-/* ========================================
    FOOTER
    ======================================== */
 .footer {
