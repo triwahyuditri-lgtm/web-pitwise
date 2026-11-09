@@ -338,6 +338,78 @@ textarea {
   flex: 0 0 auto;
 }
 
+/* App store buttons (Google Play / App Store) — dark in both themes, like the official badges */
+.btn-store {
+  gap: 12px;
+  min-height: 56px;
+  padding: 9px 22px 9px 18px;
+  background: #050506;
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #fff;
+  text-align: left;
+}
+
+.btn-store:hover {
+  background: #17181c;
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+[data-theme='light'] .btn-store {
+  border-color: #050506;
+  box-shadow: 0 8px 20px -10px rgba(5, 5, 6, 0.6);
+}
+
+[data-theme='light'] .btn-store:hover {
+  background: #2a2c31;
+  border-color: #2a2c31;
+}
+
+.btn-store .play-store-icon {
+  width: 22px;
+  height: 24px;
+}
+
+.apple-icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+}
+
+.btn-store-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.btn-store-text small {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.82;
+}
+
+.btn-store-text strong {
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.btn-store-lg {
+  min-height: 62px;
+  min-width: 200px;
+  justify-content: flex-start;
+}
+
+.store-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
 /* ========================================
    NAVBAR
    ======================================== */
@@ -1620,18 +1692,8 @@ textarea {
   text-align: center;
 }
 
-.play-badge {
-  display: inline-block;
-  transition: transform 0.25s var(--ease);
-}
-
-.play-badge:hover {
-  transform: translateY(-3px);
-}
-
-.play-badge img {
-  height: 84px;
-  width: auto;
+.download-action .store-buttons {
+  flex-direction: column;
 }
 
 .download-action small {
@@ -2082,6 +2144,11 @@ textarea {
 
   .hero-buttons .btn {
     flex: 1 1 100%;
+  }
+
+  .hero-buttons .btn-store {
+    flex: 1 1 calc(50% - 6px);
+    justify-content: center;
   }
 
   .hero-visual {
