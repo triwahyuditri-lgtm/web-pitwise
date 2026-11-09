@@ -27,13 +27,15 @@
 
     // Home: meta
     'home.title': 'PITWISE — Offline Mining Field Tool',
-    'home.desc': 'PITWISE — an offline mining field tool for productivity tracking, measurement, and field calculations. Built for mining professionals.',
+    'home.desc': 'PITWISE — an offline mining field tool for Android and iOS: productivity tracking, measurement, and field calculations. Built for mining professionals.',
 
     // Hero
-    'hero.badge': 'Android app for open-pit mining',
+    'hero.badge.tag': 'New',
+    'hero.badge': 'Now available on Android &amp; iOS',
     'hero.title': 'Your Pit. Your Data. <span class="accent-text">Your Control.</span>',
     'hero.lead': 'PITWISE is a professional offline mining field tool for supervisors, pit control teams, and production engineers. Measure distances on GeoPDF and DXF maps, estimate productivity, calculate volumes, and analyze road grades — all without an internet connection.',
-    'hero.cta': 'Get it on Google Play',
+    'store.play.pre': 'Get it on',
+    'store.apple.pre': 'Download on the',
     'hero.demo': 'Try the Calculator Demo',
     'hero.float1': '255.0 BCM / hr',
     'hero.float2.label': 'GPS · No signal',
@@ -57,7 +59,7 @@
     // About (value proposition)
     'about.eyebrow': 'Why PITWISE',
     'about.title': 'Built for <span class="accent-text">the mine site</span>',
-    'about.p1': 'PITWISE is an Android app built specifically for mine supervisors, pit control officers, and production engineers. It provides practical field tools — distance and area measurement on GeoPDF/DXF maps, overburden and coal volume calculations, excavator productivity estimates, and road grade analysis — all designed to run fully offline.',
+    'about.p1': 'PITWISE is an Android and iOS app built specifically for mine supervisors, pit control officers, and production engineers. It provides practical field tools — distance and area measurement on GeoPDF/DXF maps, overburden and coal volume calculations, excavator productivity estimates, and road grade analysis — all designed to run fully offline.',
     'about.p2': 'On open-pit mines, connectivity can’t be relied on. PITWISE removes that dependency. Load your site maps, walk the pit, take measurements, and produce reports without needing a cell signal.',
     'value1.title': 'Works without signal',
     'value1.text': 'Maps, measurements, calculations, and reports keep working in areas with no cell coverage.',
@@ -68,7 +70,7 @@
 
     // App preview
     'preview.eyebrow': 'App Screens',
-    'preview.title': 'See PITWISE on <span class="accent-text">Android</span>',
+    'preview.title': 'See PITWISE <span class="accent-text">on your phone</span>',
     'preview.sub': 'From GeoPDF maps to productivity calculators — all in one app.',
     'shot.login.alt': 'PITWISE login screen',
     'shot.home': 'Home',
@@ -134,7 +136,7 @@
     // Pricing
     'pricing.eyebrow': 'Pricing',
     'pricing.title': 'Transparent <span class="accent-text">pricing</span>',
-    'pricing.sub': 'No hidden fees. Voucher codes accepted. Renews automatically through Google Play and can be cancelled anytime.',
+    'pricing.sub': 'No hidden fees. Voucher codes accepted. Renews automatically through Google Play or the App Store and can be cancelled anytime.',
     'plan.monthly': 'Monthly',
     'plan.monthly.price': '<small>Rp</small>19,000',
     'plan.monthly.period': 'per month',
@@ -150,7 +152,7 @@
     'plan.support.std': 'Standard email support',
     'plan.support.prio': 'Priority email support',
     'plan.subscribe': 'Subscribe',
-    'pricing.note': 'Subscriptions are purchased in the app through Google Play Billing and renew automatically until cancelled. Cancel anytime in <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener noreferrer">Google Play subscriptions</a> · <a href="https://support.google.com/googleplay/answer/7018481?hl=en" target="_blank" rel="noopener noreferrer">How to cancel</a>',
+    'pricing.note': 'Subscriptions are purchased in the app through Google Play (Android) or the App Store (iOS) and renew automatically until cancelled. Cancel anytime:<br><strong>Android</strong> — <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener noreferrer">Google Play subscriptions</a> · <a href="https://support.google.com/googleplay/answer/7018481?hl=en" target="_blank" rel="noopener noreferrer">How to cancel</a><br><strong>iOS</strong> — <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener noreferrer">Apple ID subscriptions</a> · <a href="https://support.apple.com/en-us/118428" target="_blank" rel="noopener noreferrer">How to cancel</a>',
 
     // Demo calculator
     'demo.eyebrow': 'Interactive Demo',
@@ -170,7 +172,7 @@
     'demo.btn': 'Calculate Productivity',
     'demo.placeholder': 'Press <strong>Calculate Productivity</strong> to see the result.',
     'demo.cta': 'This is just a small part of PITWISE’s productivity features. In the app you can track daily output, compare it against targets, and export reports.',
-    'demo.cta.btn': 'Get it on Google Play',
+    'demo.cta.btn': 'Download PITWISE',
 
     // Testimonials
     'testi.eyebrow': 'Testimonials',
@@ -187,12 +189,11 @@
     // Download
     'dl.eyebrow': 'Download',
     'dl.title': 'Ready to take PITWISE <span class="accent-text">to the pit?</span>',
-    'dl.sub': 'Get the official PITWISE app on the Google Play Store. Safe, always up to date, and ready to boost your mine’s productivity.',
+    'dl.sub': 'Get the official PITWISE app on Google Play and the App Store. Safe, always up to date, and ready to boost your mine’s productivity.',
     'dl.malware': 'Malware-Free',
     'dl.private': 'Safe &amp; Private Data',
-    'dl.badge.alt': 'Get it on Google Play',
-    'dl.badge.src': 'https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png',
-    'dl.small': 'Free download · Android',
+    'dl.official': 'Official on Google Play &amp; App Store',
+    'dl.small': 'Free download · Android &amp; iOS',
 
     // About us + contact
     'aboutus.eyebrow': 'About Us',
