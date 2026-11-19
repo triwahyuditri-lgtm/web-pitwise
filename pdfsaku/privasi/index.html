@@ -58,6 +58,8 @@
   <em>Pengaturan &gt; Cadangkan &amp; pulihkan</em>: aplikasi membuat satu file ZIP (bisa dikunci kata sandi AES-256)
   yang Anda simpan atau kirim sendiri ke tempat pilihan Anda. File itu tunduk pada kebijakan layanan tempat Anda
   menyimpannya. Pembelian "Hapus iklan", kunci aplikasi dan pilihan bahasa tidak ikut dicadangkan.</p>
+  <p>File cadangan berisi dokumen, tanda tangan dan profil formulir Anda (termasuk NIK/NPWP bila diisi). Kata sandi
+  mengenkripsi isi file, tetapi daftar nama file di dalam ZIP tetap terbaca. Simpan file cadangan di tempat yang aman.</p>
   <h3>Log galat</h3>
   <p>Jika aplikasi mengalami galat, jenis galat dan bagian kode tempat terjadinya dicatat di file kecil di perangkat
   (paling banyak 64 KB, berisi nama file tetapi tidak berisi isi dokumen). Log ini <strong>tidak dikirim otomatis</strong>;
@@ -94,14 +96,16 @@
   iklan dihapus, Google Mobile Ads SDK tidak dimuat sama sekali.</p>
 
   <h2>3. Layanan Google di perangkat (ML Kit)</h2>
-  <p>Pemindai dokumen, OCR, terjemahan, deteksi bahasa dan pemotong latar pas foto memakai Google ML Kit yang berjalan
-  di perangkat. Gambar dan teks Anda tidak dikirim untuk diproses. ML Kit dapat mengunduh model bahasa dan mengirim
+  <p>Pemindai dokumen, pemindai kode QR/barcode, OCR, terjemahan, deteksi bahasa dan pemotong latar pas foto memakai
+  Google ML Kit yang berjalan di perangkat. Gambar dan teks Anda tidak dikirim untuk diproses. ML Kit dapat mengunduh model bahasa dan mengirim
   data diagnostik terbatas kepada Google (misalnya model perangkat, versi sistem, nama paket dan versi aplikasi,
   metrik performa, kode galat dan pengenal per-instalasi) untuk diagnostik dan analitik penggunaan, terenkripsi saat dikirim.</p>
 
   <h2>4. Berbagi file</h2>
   <p>Saat Anda memilih Bagikan, Cetak atau Simpan ke perangkat, file dikirim ke aplikasi atau layanan yang Anda pilih
   dan tunduk pada kebijakan privasi aplikasi tersebut.</p>
+  <p>Fitur <em>Bacakan</em> memakai mesin teks-ke-suara (TTS) yang terpasang di HP Anda. Jika mesin atau suara yang Anda
+  pilih memakai layanan online, teks yang dibacakan diproses oleh penyedia mesin tersebut sesuai kebijakannya.</p>
 
   <h2>5. Anak-anak</h2>
   <p>PDF Saku tidak ditujukan untuk anak di bawah 13 tahun dan tidak dengan sengaja mengumpulkan data pribadi anak.</p>
@@ -126,7 +130,9 @@
   <p><strong>Backup:</strong> Android automatic backup (Google Drive) and device-to-device transfer are turned off for
   PDF Saku, so none of this data is backed up to Google. To move to a new phone you can create a ZIP backup yourself
   (optionally AES-256 password protected) in Settings and store or send it wherever you choose; that file is subject to
-  the policy of the service you store it with. The "Remove ads" purchase, app lock and language are not included.</p>
+  the policy of the service you store it with. The "Remove ads" purchase, app lock and language are not included.
+  The backup holds your documents, signatures and form profile (including NIK/NPWP if filled in); a password encrypts
+  the contents, but the list of file names inside the ZIP stays readable, so keep backup files somewhere safe.</p>
   <p><strong>Error log:</strong> when the app hits an error, the error type and code location are written to a small file
   on the device (at most 64 KB; it may contain file names but never document contents). It is <strong>never sent
   automatically</strong>; you can share it yourself from Settings &gt; Error log to report a problem, or delete it.</p>
@@ -139,9 +145,11 @@
   <p><strong>Remove ads:</strong> ads can be removed with the one-time "Hapus iklan" purchase or a promo code, both
   handled entirely by Google Play. The app only reads the ownership status from Google Play on the device; we never
   receive payment details and do not send purchase history anywhere. Once ads are removed, the ads SDK is not loaded.</p>
-  <p><strong>Google ML Kit</strong> (scanner, OCR, translation, language ID, selfie segmentation) runs on the device and
-  may download models and send limited diagnostics (device model, OS version, app package and version, performance
-  metrics, error codes, per-installation identifiers) to Google.</p>
+  <p><strong>Google ML Kit</strong> (document scanner, QR/barcode scanner, OCR, translation, language ID, selfie
+  segmentation) runs on the device and may download models and send limited diagnostics (device model, OS version, app
+  package and version, performance metrics, error codes, per-installation identifiers) to Google.</p>
+  <p><strong>Read aloud</strong> uses the text-to-speech engine installed on your phone; if the engine or voice you chose
+  works online, the text being read is processed by that engine's provider under its own policy.</p>
   <p>The app is not directed at children under 13. Contact: <a href="mailto:tri_wahyudi@pitwise.web.id">tri_wahyudi@pitwise.web.id</a>.</p>
 </main>
 </body>
